@@ -1,3 +1,8 @@
 # Trabalho-Pratico-P2
 
-## Teste
+## Jose
+## Cris
+## Patty
+## Falcai
+## Murilo Pereira
+## Matheus Ferreira
