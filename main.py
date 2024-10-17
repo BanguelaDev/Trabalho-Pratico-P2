@@ -42,7 +42,7 @@ def desafioDosMonstros():
     
 def main():
     
-    def imprimirFicha(): # Função pra imprimar a ficha certin
+    def imprimirFicha():
         print("-" * 20)
         
         for estatistica, valor in jogador.items(): # Pegando o nome e o valor de dentro do dicionario "jogador"
