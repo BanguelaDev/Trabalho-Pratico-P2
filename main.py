@@ -14,8 +14,8 @@ jogador = {
     'experiência': 0,
     'pontos de vida': 3,
     
-    'atributos': { # sei la
-        'força': 3, # Vc pediu pra deixar tudo em 1, mas no desafio dos monstros o personagem tem q ter 3 de força..
+    'atributos': {
+        'força': 3, # O professor pediu pra deixar tudo em 1, mas no desafio dos monstros o personagem tem q ter 3 de força..
         'defesa': 1,
         'agilidade': 1,
         'inteligencia': 1,
