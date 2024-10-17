@@ -4,7 +4,7 @@ import random
 
 os.system('cls')
 
-raças = ('Humano', 'Guerreiro')
+raças = ('Humano', 'Guerreiro') # Raças disponíveis
 
 jogador = {
     'nome': "Desconhecido",
@@ -42,15 +42,15 @@ def desafioDosMonstros():
     
 def main():
     
-    def imprimirFicha():
+    def imprimirFicha(): # Função pra imprimar a ficha certin
         print("-" * 20)
         
-        for estatistica, valor in jogador.items():
-            if type(valor) is dict: # Não achei outra forma, ent pensei nisso (se o tipo do valor é um dicionário)
+        for estatistica, valor in jogador.items(): # Pegando o nome e o valor de dentro do dicionario "jogador"
+            if type(valor) is dict: # Se o tipo do valor é um dicionário
                 print(f"• {estatistica.capitalize()}:")
-                for atributo, valor in valor.items():
+                for atributo, valor in valor.items(): # Pegando o nome (atributo) e o valor de dentro do dicionario "valor"
                     print(f"•    {atributo.capitalize()}: {valor}")
-            else:
+            else: # Se não for um dicionário
                 print(f"• {estatistica.capitalize()}: {valor}")
             
         print("-" * 20, "\n")
@@ -60,20 +60,20 @@ def main():
         
         print("Raças:")
         
-        for i in range(len(raças)):
-            raça = raças[i]
-            print(f"{i + 1} - {raça}")
+        for i in range(len(raças)): # Looping de 1 até a quantidade de raças disponiveis (dicionario)
+            raça = raças[i] # Pegando o nome da raça usando o numero como índice (i)
+            print(f"{i + 1} - {raça}") # Mostrando a raça em ordem (1 a x)
             
         print("-" * 20)
             
         index = int(input("Escolha sua raça: "))
         
-        if index < 0 or index > len(raças):
+        if index < 0 or index > len(raças): # Se o indice for menor que 0 ou o indice for maior que a quantidade de raças disponíveis no dicionario "raças"
             print("Opção inválida\n")
             exit()
         
-        raça = raças[index - 1]
-        jogador["raça"] = raça
+        raça = raças[index - 1] # A raça é igual ao indice (numero escolhido) - 1
+        jogador["raça"] = raça # Definindo a raça do jogador pra raça escolhida
     
     jogador["nome"] = input("Qual o nome do seu personagem: ").capitalize()
     os.system('cls')
@@ -91,7 +91,7 @@ def main():
 
         if opção == '1':
             
-            for i in range(4):
+            for i in range(4): # Looping de 1 a 4
                 os.system('cls')
                 print(f"Iniciando o jogo{'.' * i}")
                 time.sleep(.5)
