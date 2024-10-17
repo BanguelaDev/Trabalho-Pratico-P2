@@ -34,22 +34,20 @@ def desafioDoCofre():
     print("Começando o desafio do cofre!\n")
     print("O enigma funcionará da seguinte maneira, o cofre terá um numero aleatório de 3 a 18, e você terá 3 dados de 6 faces, jogue os 3 dados e tenha a sorte do total dos números ser o número do cofre escolhido. \nBoa sorte aventureiro!\n")
     numero_do_cofre = random.randint(3,18)
-    print(f"O Número do cofre é: {numero_do_cofre}\n") 
+    print(f"O Número do cofre é: {numero_do_cofre}")
 
-    # dados de cria
     dado1 = random.randint(1,6)
     dado2 = random.randint(1,6)
     dado3 = random.randint(1,6)
     somar_os_dados = dado1 + dado2 + dado3
 
-    print(f"Você rolou os 3 dados e essas foram suas seguintes faces: {dado1}, {dado2} e {dado3} ")
+    print(f"Você rolou os 3 dados e essas foram suas seguintes faces: {dado1}, {dado2} e {dado3}")
     print(f"A soma dos dados é: {somar_os_dados}")
 
-    if somar_os_dados == numero_do_cofre: 
-        print("Parabéns Aventureiro!!! Você consegiu decifrar o enigma do cofre!!!\n")
-    else : 
+    if somar_os_dados == numero_do_cofre:
+        print("Parabéns Aventureiro!!! Você conseguiu decifrar o enigma do cofre!!!")
+    else:
         print("Você não conseguiu decifrar o enigma do cofre, tente novamente Aventureiro!!!")
-    
           
 def desafioDosMonstros():
     print("Começando o desafio dos monstros!\n")
