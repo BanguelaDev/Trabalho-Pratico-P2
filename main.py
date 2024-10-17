@@ -45,7 +45,7 @@ def desafioDoCofre():
     print(f"Você rolou os 3 dados e essas foram suas seguintes faces: {dado1}, {dado2} e {dado3} ")
     print(f"A soma dos dados é: {somar_os_dados}")
 
-    if somar_os_dados == numero_do_cofre:
+    if somar_os_dados == numero_do_cofre: 
         print("Parabéns Aventureiro!!! Você consegiu decifrar o enigma do cofre!!!\n")
     else : 
         print("Você não conseguiu decifrar o enigma do cofre, tente novamente Aventureiro!!!")
