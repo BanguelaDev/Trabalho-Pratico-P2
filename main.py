@@ -36,6 +36,8 @@ def desafioDoCofre():
     numero_do_cofre = random.randint(3,18)
 
     # pensei dessa forma, quem quiser arrumar fica a vontade
+    # vamo deixar mais bonitinho, usar o time.sleep pra n ir tudo de uma vez só, vou deixar com outra pessoa
+    
     dado1 = random.randint(1,6)
     dado2 = random.randint(1,6)
     dado3 = random.randint(1,6)
@@ -48,85 +50,76 @@ def desafioDoCofre():
         print("Parabéns Aventureiro!!! Você conseguiu decifrar o enigma do cofre!!!\n")
     else:
         print("Você não conseguiu decifrar o enigma do cofre, tente novamente Aventureiro!!!")
-
-
           
 def desafioDosMonstros():
     print("Começando o desafio dos monstros!\n")
     
+def imprimirFicha():
+    print("-" * 20)
+        
+    for estatistica, valor in jogador.items(): # Pegando o nome e o valor de dentro do dicionario "jogador"
+        if type(valor) is dict: # Se o tipo do valor é um dicionário
+            print(f"• {estatistica.capitalize()}:")
+            for atributo, valor in valor.items(): # Pegando o nome (atributo) e o valor de dentro do dicionario "valor"
+                print(f"•    {atributo.capitalize()}: {valor}")
+        else: # Se não for um dicionário
+            print(f"• {estatistica.capitalize()}: {valor}")
+            
+    print("-" * 20, "\n")
+        
+def escolherRaça():
+    print("-" * 20)
+        
+    print("Raças:")
+        
+    for i in range(len(raças)): # Looping de 1 até a quantidade de raças disponiveis (dicionario)
+        raça = raças[i] # Pegando o nome da raça usando o numero como índice (i)
+        print(f"{i + 1} - {raça}") # Mostrando a raça em ordem (1 a x)
+            
+    print("-" * 20)
+            
+    index = int(input("Escolha sua raça: "))
+        
+    if index < 0 or index > len(raças): # Se o indice for menor que 0 ou o indice for maior que a quantidade de raças disponíveis no dicionario "raças"
+         print("Opção inválida\n")
+         exit()
+        
+    raça = raças[index - 1] # A raça é igual ao indice (numero escolhido) - 1
+    jogador["raça"] = raça # Definindo a raça do jogador pra raça escolhida
     
-def main():
-    
-    def imprimirFicha():
-        print("-" * 20)
+jogador["nome"] = input("Qual o nome do seu personagem: ").capitalize()
+os.system('cls')
         
-        for estatistica, valor in jogador.items(): # Pegando o nome e o valor de dentro do dicionario "jogador"
-            if type(valor) is dict: # Se o tipo do valor é um dicionário
-                print(f"• {estatistica.capitalize()}:")
-                for atributo, valor in valor.items(): # Pegando o nome (atributo) e o valor de dentro do dicionario "valor"
-                    print(f"•    {atributo.capitalize()}: {valor}")
-            else: # Se não for um dicionário
-                print(f"• {estatistica.capitalize()}: {valor}")
-            
-        print("-" * 20, "\n")
-        
-    def escolherRaça():
-        print("-" * 20)
-        
-        print("Raças:")
-        
-        for i in range(len(raças)): # Looping de 1 até a quantidade de raças disponiveis (dicionario)
-            raça = raças[i] # Pegando o nome da raça usando o numero como índice (i)
-            print(f"{i + 1} - {raça}") # Mostrando a raça em ordem (1 a x)
-            
-        print("-" * 20)
-            
-        index = int(input("Escolha sua raça: "))
-        
-        if index < 0 or index > len(raças): # Se o indice for menor que 0 ou o indice for maior que a quantidade de raças disponíveis no dicionario "raças"
-            print("Opção inválida\n")
-            exit()
-        
-        raça = raças[index - 1] # A raça é igual ao indice (numero escolhido) - 1
-        jogador["raça"] = raça # Definindo a raça do jogador pra raça escolhida
-    
-    jogador["nome"] = input("Qual o nome do seu personagem: ").capitalize()
-    os.system('cls')
-        
-    print(f"Olá jogador {jogador["nome"]}, seja bem vindo ao jogo!!\n")
-    escolherRaça()
+print(f"Olá jogador {jogador["nome"]}, seja bem vindo ao jogo!!\n")
+escolherRaça()
 
-    os.system('cls')
+os.system('cls')
 
-    print("Tudo pronto para começar, mas antes aqui está sua ficha\n")
-    imprimirFicha()
+print("Tudo pronto para começar, mas antes aqui está sua ficha\n")
+imprimirFicha()
 
-    while True:
-        opção = input("1 - Entrar na caverna e dar inicio ao jogo\n2 - Voltar para a pusada e finalizar o jogo \nO que deseja fazer: ")
+while True:
+    opção = input("1 - Entrar na caverna e dar inicio ao jogo\n2 - Voltar para a pusada e finalizar o jogo \nO que deseja fazer: ")
 
-        if opção == '1':
+    if opção == '1':
             
-            for i in range(4): # Looping de 1 a 4
-                os.system('cls')
-                print(f"Iniciando o jogo{'.' * i}")
-                time.sleep(.5)
+        print("\nIniciando o jogo.")
+        time.sleep(2)
                 
-            os.system('cls')
+        os.system('cls')
             
-            valorRandom = random.randint(1, 8)
-            print(f"Um valor aleatório foi gerado, e caiu em: {valorRandom} \n")
+        valorRandom = random.randint(1, 8)
+        print(f"Um valor aleatório foi gerado, e caiu em: {valorRandom} \n")
             
-            if valorRandom >= 1 or valorRandom <= 2:
-                desafioDoCofre()
+        if valorRandom >= 1 or valorRandom <= 2:
+            desafioDoCofre()
                 
-            elif valorRandom >= 3 or valorRandom <= 8:
-                desafioDosMonstros()
+        elif valorRandom >= 3 or valorRandom <= 8:
+            desafioDosMonstros()
             
-        elif opção == "2":
-            imprimirFicha()
-            exit()
+    elif opção == "2":
+        imprimirFicha()
+        exit()
             
-        else:
-            continue
-        
-main()
+    else:
+        continue
