@@ -3,6 +3,7 @@ import os
 import random
 
 # Oi
+# efvefef
 
 os.system('cls')
 
@@ -124,4 +125,4 @@ while True:
         exit()
             
     else:
-        continue
+        continue 
