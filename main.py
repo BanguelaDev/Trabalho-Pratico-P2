@@ -32,6 +32,31 @@ jogador = {
         'ouro': 0
     }
 }
+
+# fiz um dicionátio para cada monstro (OBS: o monstro tem esquiva determinada, mas, o personagem vai fazer um teste D20)
+monstro_facil = {
+    'pontos de vida': 8,
+    'defesa': 1,
+    'esquiva': 2,
+}
+
+monstro_médio = {
+    'pontos de vida':  12,
+    'defesa': 1,
+    'esquiva': 4,
+}
+
+monstro_dificil = {
+    'ponto de vida': 20,
+    'defesa': 2,
+    'esquiva': 6,
+}
+
+boss = {
+    'pontos de vida': 45,
+    'defesa': 10,
+    'esquiva': 8
+}
     
 def desafioDoCofre():
     print("Começando o desafio do cofre!\n")
