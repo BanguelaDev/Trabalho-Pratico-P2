@@ -18,12 +18,10 @@ jogador = {
     'pontos de vida': 3,
     
     'atributos': {
-        'força': 3, # O professor pediu pra deixar tudo em 1, mas no desafio dos monstros o personagem tem q ter 3 de força..
+        'ataque': 2,
         'defesa': 1,
-        'agilidade': 1,
-        'inteligencia': 1,
-        'carisma': 1,
-        'sabedoria': 1,
+        'vida': 8,
+        'esquiva': 1,
     },
     
     'moedas' : {
@@ -35,27 +33,31 @@ jogador = {
 
 # fiz um dicionátio para cada monstro (OBS: o monstro tem esquiva determinada, mas, o personagem vai fazer um teste D20)
 monstro_facil = {
-    'pontos de vida': 8,
+    'ataque': 3,
     'defesa': 1,
+    'vida': 8,
     'esquiva': 2,
 }
 
 monstro_médio = {
-    'pontos de vida':  12,
+    'ataque': 4,
     'defesa': 1,
+    'vida': 12,
     'esquiva': 4,
 }
 
 monstro_dificil = {
-    'ponto de vida': 20,
+    'ataque': 6,
     'defesa': 2,
+    'vida': 20,
     'esquiva': 6,
 }
 
 boss = {
-    'pontos de vida': 45,
-    'defesa': 10,
-    'esquiva': 8
+    'ataque': 10,
+    'defesa': 5,
+    'vida': 45,
+    'esquiva': 8,
 }
     
 def desafioDoCofre():
