@@ -157,8 +157,9 @@ def main():
             os.system('cls')
             
             valorRandom = random.randint(1, 20) # o professor mudou o sistema random, agora é d20 no lugar do d8
-            print(f"Rolando um d20{'.' * i}")  # mudei um pouco aqui, tentei deixar um pouco bonito
-            time.sleep(.7)
+            for i in range(4):
+               print(f"Rolando um d20{'.' * i}", end='\r')  # mudei um pouco aqui, tentei deixar um pouco bonito
+               time.sleep(.5)
             print(f"O Número que caiu foi: {valorRandom} \n") 
             
             if valorRandom <= 4: # igual ou menor a 4 é o cofre
