@@ -54,6 +54,24 @@ boss = {
     'defesa': 10,
     'esquiva': 8
 }
+
+# adicionei o acerto critico, eu imaginei isso em forma de função 
+def calcular_o_dano (ataque_personagem, defesa_monstro):
+    d20 = random.randint(1, 20)
+
+    for i in range(4):# só pra ficar bonito
+                print(f"Rolando um D20{'.' * i}")
+                time.sleep(.7)
+    print(f"Você rolou {d20} no do D20")
+
+    if d20 == 20:
+        print("ACERTO CRÍTICO!!!")
+        dano = (ataque_personagem * 2) - defesa_monstro
+    else:
+        dano = ataque_personagem - defesa_monstro
+    if dano < 0:# não sei se era necessário, mas add para não ter a possibiladade de dano negativo
+        dano = 0 
+        return dano
     
 def desafioDoCofre():
     print("Começando o desafio do cofre!\n")
@@ -138,13 +156,15 @@ def main():
                 
             os.system('cls')
             
-            valorRandom = random.randint(1, 8)
-            print(f"Um valor aleatório foi gerado, e caiu em: {valorRandom} \n")
+            valorRandom = random.randint(1, 20) # o professor mudou o sistema random, agora é d20 no lugar do d8
+            print(f"Rolando um d20{'.' * i}")  # mudei um pouco aqui, tentei deixar um pouco bonito
+            time.sleep(.7)
+            print(f"O Número que caiu foi: {valorRandom} \n") 
             
-            if valorRandom >= 1 or valorRandom <= 2:
+            if valorRandom <= 4: # igual ou menor a 4 é o cofre
                 desafioDoCofre()
                 
-            elif valorRandom >= 3 or valorRandom <= 8:
+            else: # de 5 pra frente é monstro meu parceiro 
                 desafioDosMonstros()
             
         elif opção == "2":
