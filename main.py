@@ -2,9 +2,6 @@ import time
 import os
 import random
 
-# Oi
-# efvefef
-
 os.system('cls')
 
 raças = ('Humano', 'Guerreiro') # Raças disponíveis
