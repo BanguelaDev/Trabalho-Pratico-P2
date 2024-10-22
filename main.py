@@ -55,6 +55,24 @@ boss = {
     'esquiva': 8
 }
 
+def esquivar (esquiva_personagem, ataque_do_monstro): # teste de esquiva
+    d20 = random.randint(1, 20)
+    result_esquiva = d20 + esquiva_personagem
+    
+    for i in range(4): 
+                print(f"Rolando um D20{'.' * i}")
+                time.sleep(.7)
+    print(f"Você tirou {d20} teste de esquiva")
+    print(f"Sua esquiva: {result_esquiva}")
+
+    if result_esquiva >= ataque_do_monstro:
+        print("VOCÊ SE ESQUIVOU DO ATAQUE!!!")
+        return False
+    else:
+        print("Você não se esquivou a tempo!!!")
+        print("Você recebeu um golpe do monstro")
+        return False
+
 # adicionei o acerto critico, eu imaginei isso em forma de função 
 def calcular_o_dano (ataque_personagem, defesa_monstro):
     d20 = random.randint(1, 20)
@@ -160,7 +178,7 @@ def main():
             for i in range(4):
                print(f"Rolando um d20{'.' * i}", end='\r')  # mudei um pouco aqui, tentei deixar um pouco bonito
                time.sleep(.5)
-            print(f"O Número que caiu foi: {valorRandom} \n") 
+            print(f"Você rolou {valorRandom} no D20\n") 
             
             if valorRandom <= 4: # igual ou menor a 4 é o cofre
                 desafioDoCofre()
