@@ -12,7 +12,6 @@ jogador = {
     
     'nível': 1,
     'experiência': 0,
-    'pontos de vida': 3,
     
     'atributos': {
         'ataque': 2,
@@ -57,13 +56,18 @@ boss = {
     'esquiva': 8,
 }
 
+# funcaozinha p rolar o d20
+def rolar_D20():
+    for i in range(4):# só pra ficar bonito
+        os.system('cls')
+        print(f"Rolando um D20{'.' * i}")
+        time.sleep(.7)
+    return random.randint(1, 20)
+
 def esquivar (esquiva_personagem, ataque_do_monstro): # teste de esquiva
-    d20 = random.randint(1, 20)
+    d20 = rolar_D20()
     result_esquiva = d20 + esquiva_personagem
-    
-    for i in range(4): 
-                print(f"Rolando um D20{'.' * i}")
-                time.sleep(.7)
+
     print(f"Você tirou {d20} teste de esquiva")
     print(f"Sua esquiva: {result_esquiva}")
 
@@ -77,11 +81,7 @@ def esquivar (esquiva_personagem, ataque_do_monstro): # teste de esquiva
 
 # adicionei o acerto critico, eu imaginei isso em forma de função 
 def calcular_o_dano (ataque_personagem, defesa_monstro):
-    d20 = random.randint(1, 20)
-
-    for i in range(4):# só pra ficar bonito
-                print(f"Rolando um D20{'.' * i}")
-                time.sleep(.7)
+    d20 = rolar_D20()
     print(f"Você rolou {d20} no do D20")
 
     if d20 == 20:
@@ -171,11 +171,10 @@ while True:
                 
         os.system('cls')
             
-        valorRandom = random.randint(1, 20) # o professor mudou o sistema random, agora é d20 no lugar do d8
-        time.sleep(.5)
-        print(f"Você rolou {valorRandom} no D20\n") 
+        d20 = rolar_D20()
+        print(f"Você rolou {d20} no D20\n") 
             
-        if valorRandom <= 4: # igual ou menor a 4 é o cofre
+        if d20 <= 4: # igual ou menor a 4 é o cofre
             desafioDoCofre()
                 
         else: # de 5 pra frente é monstro meu parceiro 
