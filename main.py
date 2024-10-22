@@ -175,10 +175,8 @@ while True:
         os.system('cls')
             
         valorRandom = random.randint(1, 20) # o professor mudou o sistema random, agora é d20 no lugar do d8
-        for i in range(4):
-            print(f"Rolando um d20{'.' * i}", end='\r')  # mudei um pouco aqui, tentei deixar um pouco bonito
-            time.sleep(.5)
-            print(f"Você rolou {valorRandom} no D20\n") 
+        time.sleep(.5)
+        print(f"Você rolou {valorRandom} no D20\n") 
             
         if valorRandom <= 4: # igual ou menor a 4 é o cofre
             desafioDoCofre()
