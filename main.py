@@ -59,6 +59,42 @@ boss = {
     'vida': 45,
     'esquiva': 8,
 }
+
+def esquivar (esquiva_personagem, ataque_do_monstro): # teste de esquiva
+    d20 = random.randint(1, 20)
+    result_esquiva = d20 + esquiva_personagem
+    
+    for i in range(4): 
+                print(f"Rolando um D20{'.' * i}")
+                time.sleep(.7)
+    print(f"Você tirou {d20} teste de esquiva")
+    print(f"Sua esquiva: {result_esquiva}")
+
+    if result_esquiva >= ataque_do_monstro:
+        print("VOCÊ SE ESQUIVOU DO ATAQUE!!!")
+        return False
+    else:
+        print("Você não se esquivou a tempo!!!")
+        print("Você recebeu um golpe do monstro")
+        return False
+
+# adicionei o acerto critico, eu imaginei isso em forma de função 
+def calcular_o_dano (ataque_personagem, defesa_monstro):
+    d20 = random.randint(1, 20)
+
+    for i in range(4):# só pra ficar bonito
+                print(f"Rolando um D20{'.' * i}")
+                time.sleep(.7)
+    print(f"Você rolou {d20} no do D20")
+
+    if d20 == 20:
+        print("ACERTO CRÍTICO!!!")
+        dano = (ataque_personagem * 2) - defesa_monstro
+    else:
+        dano = ataque_personagem - defesa_monstro
+    if dano < 0:# não sei se era necessário, mas add para não ter a possibiladade de dano negativo
+        dano = 0 
+        return dano
     
 def desafioDoCofre():
     print("Começando o desafio do cofre!\n")
@@ -138,13 +174,16 @@ while True:
                 
         os.system('cls')
             
-        valorRandom = random.randint(1, 8)
-        print(f"Um valor aleatório foi gerado, e caiu em: {valorRandom} \n")
+        valorRandom = random.randint(1, 20) # o professor mudou o sistema random, agora é d20 no lugar do d8
+        for i in range(4):
+            print(f"Rolando um d20{'.' * i}", end='\r')  # mudei um pouco aqui, tentei deixar um pouco bonito
+            time.sleep(.5)
+            print(f"Você rolou {valorRandom} no D20\n") 
             
-        if valorRandom >= 1 or valorRandom <= 2:
+        if valorRandom <= 4: # igual ou menor a 4 é o cofre
             desafioDoCofre()
                 
-        elif valorRandom >= 3 or valorRandom <= 8:
+        else: # de 5 pra frente é monstro meu parceiro 
             desafioDosMonstros()
             
     elif opção == "2":
