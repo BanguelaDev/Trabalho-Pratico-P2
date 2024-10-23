@@ -6,6 +6,8 @@ os.system('cls')
 
 raças = ('Humano', 'Guerreiro') # Raças disponíveis
 
+@qualquer coisa
+
 jogador = {
     'nome': "Desconhecido",
     'raça': "Desconhecida",
