@@ -153,7 +153,7 @@ def escolherRaça():
 jogador["nome"] = input("Qual o nome do seu personagem: ").capitalize()
 os.system('cls')
         
-print(f"Olá jogador {jogador["nome"]}, seja bem vindo ao jogo!!\n")
+print(f'Olá jogador {jogador["nome"]}, seja bem vindo ao jogo!!\n')
 escolherRaça()
 
 os.system('cls')
