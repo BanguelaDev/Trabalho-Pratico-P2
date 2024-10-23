@@ -6,7 +6,6 @@ os.system('cls')
 
 raças = ('Humano', 'Guerreiro') # Raças disponíveis
 
-@qualquer coisa
 
 jogador = {
     'nome': "Desconhecido",
@@ -98,6 +97,7 @@ def calcular_o_dano (ataque_personagem, defesa_monstro):
 def desafioDoCofre():
     print("Começando o desafio do cofre!\n")
     print("O enigma funcionará da seguinte maneira, o cofre terá um numero aleatório de 3 a 18, e você terá 3 dados de 6 faces, jogue os 3 dados e tenha a sorte do total dos números ser o número do cofre escolhido. \nBoa sorte aventureiro!\n")
+    
     numero_do_cofre = random.randint(3,18)
 
     # pensei dessa forma, quem quiser arrumar fica a vontade
