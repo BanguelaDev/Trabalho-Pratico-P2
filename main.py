@@ -102,7 +102,7 @@ def desafioDoCofre():
 
     # pensei dessa forma, quem quiser arrumar fica a vontade
     # vamo deixar mais bonitinho, usar o time.sleep pra n ir tudo de uma vez só, vou deixar com outra pessoa
-    
+    #eu nao sei o que fazzeeeeer
     dado1 = random.randint(1,6)
     dado2 = random.randint(1,6)
     dado3 = random.randint(1,6)
@@ -129,7 +129,7 @@ def imprimirFicha():
                 print(f"•    {atributo.capitalize()}: {valor}")
         else: # Se não for um dicionário
             print(f"• {estatistica.capitalize()}: {valor}")
-            gfhffdg
+       
     print("-" * 20, "\n")
         
 def escolherRaça():
