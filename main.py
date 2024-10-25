@@ -129,7 +129,7 @@ def imprimirFicha():
                 print(f"•    {atributo.capitalize()}: {valor}")
         else: # Se não for um dicionário
             print(f"• {estatistica.capitalize()}: {valor}")
-            
+            gfhffdg
     print("-" * 20, "\n")
         
 def escolherRaça():
