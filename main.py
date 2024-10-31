@@ -25,6 +25,23 @@ races = {
     'human': {'attack': 1, 'dodge': 1, 'defense': 1, 'health': 1},
 }
 
+# to fazendo aqueles requisitos inicias que o professor mandou fazer, o sistema e os testes e assim adiante
+
+# o sistema de D20
+def D20():
+    return random.randint(1,20)
+
+# teste ataque (pedido de socorro: to entendendo nada)
+# depois lanço o english cabuloso, se não vou me confundir 
+def teste_de_ataque(ataque_usuario, defesa_inimigo):
+    rolar_dado = D20()  
+    ataque_final = rolar_dado + ataque_usuario  
+    CRITICO = rolar_dado == 20 # isso aqui é em relação ao dano critico
+
+    if ataque_final >= defesa_inimigo:
+        return True, CRITICO 
+    return False, False 
+
 # Simulando um banco de dados com um dicionário, trocar por sql (não faço ideia de como funciona)
 accounts = {}
 
