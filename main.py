@@ -55,6 +55,13 @@ monstros = {
     'dificil': {'ataque:6,' 'defesa:2,' 'vida:20,' 'esquiva:6,'},
     'chefe': {'ataque:10,' 'defesa:5,' 'vida:45,' 'esquiva:8,'},
 }
+# tinha esquecido da route
+@app.route("/teste_de_ataque", methods=['POST'])
+def ataque_route():
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('homepage'))
+
 # Simulando um banco de dados com um dicionário, trocar por sql (não faço ideia de como funciona)
 accounts = {}
 
