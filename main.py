@@ -42,6 +42,19 @@ def teste_de_ataque(ataque_usuario, defesa_inimigo):
         return True, CRITICO 
     return False, False 
 
+# calcular o dano
+def calcular_dano(ataque_usuario, defesa_inimigo, dano_critico):
+    dano_inicial = max(0, ataque_usuario - defesa_inimigo )
+    if dano_critico:
+        return dano_inicial * 2 
+    return dano_inicial
+
+monstros = {
+    'fraco': {'ataque:3,' 'defesa:1,' 'vida:8,' 'esquiva:2'},
+    'medio': {'ataque:4,' 'defesa:1,' 'vida:12,' 'esquiva:4,'},
+    'dificil': {'ataque:6,' 'defesa:2,' 'vida:20,' 'esquiva:6,'},
+    'chefe': {'ataque:10,' 'defesa:5,' 'vida:45,' 'esquiva:8,'},
+}
 # Simulando um banco de dados com um dicionário, trocar por sql (não faço ideia de como funciona)
 accounts = {}
 
