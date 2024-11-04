@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Raça e Vocação</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ticketRegister.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Escolha sua Raça e Vocação</h1>
+        
+        <form action="/ticket" method="post">
+            <label for="race">Raça:</label>
+            <select name="race" id="race" required>
+                {% for race in races.keys() %}
+                    <option value="{{ race }}">{{ race.capitalize() }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="vocation">Vocação:</label>
+            <select name="vocation" id="vocation" required>
+                {% for vocation in vocations.keys() %}
+                    <option value="{{ vocation }}">{{ vocation.capitalize() }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Confirmar</button>
+        </form>
+    </div>
+</body>
+</html>

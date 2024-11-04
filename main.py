@@ -1,11 +1,12 @@
-import time
 import os
+from flask import Flask, render_template, request, redirect, url_for, session
 import random
+import copy
 
 os.system('cls')
 
 raças = ('Humano', 'Guerreiro') # Raças disponíveis
-
+app.secret_key = 'tads'
 
 jogador = {
     'nome': "Desconhecido",
@@ -28,71 +29,79 @@ jogador = {
     }
 }
 
-# fiz um dicionátio para cada monstro (OBS: o monstro tem esquiva determinada, mas, o personagem vai fazer um teste D20)
-monstro_facil = {
-    'ataque': 3,
-    'defesa': 1,
-    'vida': 8,
-    'esquiva': 2,
+vocations = {
+    'warrior': {'attack': 2, 'defense': 1, 'dodge': -1},
+    'archer': {'attack': 2, 'dodge': 1, 'defense': -1, 'health': -1},
+    'paladin': {'attack': 1, 'dodge': -1, 'defense': 1, 'health': 1},
 }
 
-monstro_médio = {
-    'ataque': 4,
-    'defesa': 1,
-    'vida': 12,
-    'esquiva': 4,
+races = {
+    'dwarf': {'defense': 1, 'health': 2},
+    'elf': {'attack': 1, 'dodge': 2},
+    'human': {'attack': 1, 'dodge': 1, 'defense': 1, 'health': 1},
 }
 
-monstro_dificil = {
-    'ataque': 6,
-    'defesa': 2,
-    'vida': 20,
-    'esquiva': 6,
+# to fazendo aqueles requisitos inicias que o professor mandou fazer, o sistema e os testes e assim adiante
+
+monstros = {
+    'fraco': {'ataque':3, 'defesa':1, 'vida':8, 'esquiva':2},
+    'medio': {'ataque':4, 'defesa':1, 'vida':12, 'esquiva':4,},
+    'dificil': {'ataque':6, 'defesa':2, 'vida':20, 'esquiva':6,},
+    'chefe': {'ataque':10, 'defesa':5, 'vida':45, 'esquiva':8,},
 }
+# o sistema de D20
+def D20():
+    return random.randint(1,20)
 
-boss = {
-    'ataque': 10,
-    'defesa': 5,
-    'vida': 45,
-    'esquiva': 8,
-}
-
-# funcaozinha p rolar o d20
-def rolar_D20():
-    for i in range(4):# só pra ficar bonito
-        os.system('cls')
-        print(f"Rolando um D20{'.' * i}")
-        time.sleep(.7)
-    return random.randint(1, 20)
-
-def esquivar (esquiva_personagem, ataque_do_monstro): # teste de esquiva
-    d20 = rolar_D20()
-    result_esquiva = d20 + esquiva_personagem
-
-    print(f"Você tirou {d20} teste de esquiva")
-    print(f"Sua esquiva: {result_esquiva}")
-
-    if result_esquiva >= ataque_do_monstro:
-        print("VOCÊ SE ESQUIVOU DO ATAQUE!!!")
-        return False
+def escolha_do_monstro():# usando o D100 pra ver qual monstro vai dropar 
+    drope = random.randint(0,100)
+    if drope <= 39:
+        return monstros['fraco']
+    elif drope <= 69:
+        return monstros['medio']
+    elif drope <=89:
+        return monstros['dificil']
     else:
-        print("Você não se esquivou a tempo!!!")
-        print("Você recebeu um golpe do monstro")
-        return False
+        return monstros['chefe']
 
-# adicionei o acerto critico, eu imaginei isso em forma de função 
-def calcular_o_dano (ataque_personagem, defesa_monstro):
-    d20 = rolar_D20()
-    print(f"Você rolou {d20} no do D20")
+# teste ataque (pedido de socorro: to entendendo nada)
+# depois lanço o english cabuloso, se não vou me confundir 
+def teste_de_ataque(ataque_usuario, defesa_inimigo):
+    rolar_dado = D20()  
+    ataque_final = rolar_dado + ataque_usuario
+    critico = rolar_dado == 20  
+    return ataque_final >= defesa_inimigo, critico
 
-    if d20 == 20:
-        print("ACERTO CRÍTICO!!!")
-        dano = (ataque_personagem * 2) - defesa_monstro
+# calcular o dano
+def calcular_dano(ataque_usuario, defesa_inimigo, dano_critico):
+    dano_inicial = max(0, ataque_usuario - defesa_inimigo)
+    if dano_critico:
+        return dano_inicial * 2
+    return dano_inicial
+
+# Simulando um banco de dados com um dicionário, trocar por sql (não faço ideia de como funciona)
+accounts = {}
+
+@app.route("/")
+def homepage():
+    return render_template("homepage.html")
+
+@app.route("/loginRegister", methods=['POST'])
+def loginRegister():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    if username in accounts: # Caso a conta ja exista
+        if accounts[username]['password'] == password: # Se a senha for correta
+            session['username'] = username
+            return redirect(url_for('ticket')) # Levar pra ficha
+        else:
+            return "Senha incorreta! Tente novamente.", 401
     else:
-        dano = ataque_personagem - defesa_monstro
-    if dano < 0:# não sei se era necessário, mas add para não ter a possibiladade de dano negativo
-        dano = 0 
-        return dano
+        accounts[username] = {'password': password, 'player': copy.deepcopy(jogador)}
+        accounts[username]['player']['name'] = username
+        session['username'] = username
+        return redirect(url_for('ticketRegister'))
     
 def desafioDoCofre():
     print("Começando o desafio do cofre!\n")
@@ -100,24 +109,56 @@ def desafioDoCofre():
     
     numero_do_cofre = random.randint(3,18)
 
-    # pensei dessa forma, quem quiser arrumar fica a vontade
-    # vamo deixar mais bonitinho, usar o time.sleep pra n ir tudo de uma vez só, vou deixar com outra pessoa
-    #alguem ajudaaaa
     dado1 = random.randint(1,6)
     dado2 = random.randint(1,6)
     dado3 = random.randint(1,6)
     somar_os_dados = dado1 + dado2 + dado3
 
-    print(f"Você rolou os dados e essas foram suas seguintes faces: {dado1}, {dado2} e {dado3}")
-    print(f"A soma dos dados é: {somar_os_dados}")
+    return render_template("ticketRegister.html", races=races, vocations=vocations)
 
-    if somar_os_dados == numero_do_cofre:
-        print("Parabéns Aventureiro!!! Você conseguiu decifrar o enigma do cofre!!!\n")
+@app.route("/logout")
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('homepage'))
+
+@app.route("/ticket", methods=['GET', 'POST'])
+def ticket():
+    username = session.get('username')
+    if username and username in accounts:
+        player_info = accounts.get(username, {}).get('player')
+        if player_info:
+            return render_template("ticket.html", player=player_info)
+    
+    return redirect(url_for('homepage'))
+
+# tinha esquecido da route
+@app.route("/teste_de_ataque", methods=['POST'])
+def ataque_route():
+    username = session.get('username')
+    if not username:
+        return redirect(url_for('homepage'))
+    
+    player = accounts[username][player] if username in accounts else None
+    monstros = escolha_do_monstro()
+
+    if not player or not monstros:
+        return "Erro ao carregar dados do player ou monstro.", 500
+    
+    dano = 0
+    
+    ataque, critico = teste_de_ataque(player['attributes']['attack'], monstros['defesa'])
+    if ataque:
+        dano = calcular_dano(player['attributes']['attack'], monstros['defesa'], critico)
+        resultado = f"Ataque Bem-Sucedido!!! {'Dano Crítico!!!' if critico else 'Dano Normal.'} Dano causado: {dano}"
     else:
-        print("Você não conseguiu decifrar o enigma do cofre, tente novamente Aventureiro!!!")
-          
-def desafioDosMonstros():
-    print("Começando o desafio dos monstros!\n")
+        resultado = "O ataque falhou"
+
+    return render_template("resultado_ataque.html", resultado = resultado)  
+    
+
+
+
+    
     
 def imprimirFicha():
     print("-" * 20)
@@ -152,39 +193,7 @@ def escolherRaça():
     raça = raças[index - 1] # A raça é igual ao indice (numero escolhido) - 1
     jogador["raça"] = raça # Definindo a raça do jogador pra raça escolhida
     
-jogador["nome"] = input("Qual o nome do seu personagem: ").capitalize()
-os.system('cls')
-        
-print(f"Olá jogador {jogador["nome"]}, seja bem vindo ao jogo!!\n")
-escolherRaça()
 
-os.system('cls')
 
-print("Tudo pronto para começar, mas antes aqui está sua ficha\n")
-imprimirFicha()
-
-while True:
-    opção = input("1 - Entrar na caverna e dar inicio ao jogo\n2 - Voltar para a pusada e finalizar o jogo \nO que deseja fazer: ")
-
-    if opção == '1':
-            
-        print("\nIniciando o jogo.")
-        time.sleep(2)
-                
-        os.system('cls')
-            
-        d20 = rolar_D20()
-        print(f"Você rolou {d20} no D20\n") 
-            
-        if d20 <= 4: # igual ou menor a 4 é o cofre
-            desafioDoCofre()
-                
-        else: # de 5 pra frente é monstro meu parceiro 
-            desafioDosMonstros()
-            
-    elif opção == "2":
-        imprimirFicha()
-        exit()
-            
-    else:
-        continue 
+if __name__ == "__main__":
+    app.run(debug=True)
