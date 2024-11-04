@@ -1,11 +1,8 @@
-import os
 from flask import Flask, render_template, request, redirect, url_for, session
 import random
 import copy
 
-os.system('cls')
-
-raças = ('Humano', 'Guerreiro') # Raças disponíveis
+app = Flask(__name__)
 app.secret_key = 'tads'
 
 jogador = {
