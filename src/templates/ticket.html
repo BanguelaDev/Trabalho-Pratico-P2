@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ticket.css') }}">
+    <title>Ficha do jogador</title>
+</head>
+
+<body>
+
+    <table class="stats-table">
+        <thead>
+            <tr>
+                <th>Ticket</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ID</td>
+                <td>{{ player[0] }}</td>  <!-- player[0] -> id -->
+            </tr>
+            <tr>
+                <td>Nome</td>
+                <td>{{ player[2] }}</td>  <!-- player[2] -> name -->
+            </tr>
+            <tr>
+                <td>Vocação</td>
+                <td>{{ player[3] }}</td>  <!-- player[3] -> vocation -->
+            </tr>
+            <tr>
+                <td>Raça</td>
+                <td>{{ player[4] }}</td>  <!-- player[4] -> race -->
+            </tr>
+            <tr>
+                <td>Experiência</td>
+                <td>{{ player[5] }}</td>  <!-- player[5] -> exp -->
+            </tr>
+            <tr>
+                <td>Nível</td>
+                <td>{{ player[6] }}</td>  <!-- player[6] -> level -->
+            </tr>
+            <tr>
+                <td>Ataque</td>
+                <td>{{ player[7] }}</td>  <!-- player[7] -> attack -->
+            </tr>
+            <tr>
+                <td>Defesa</td>
+                <td>{{ player[8] }}</td>  <!-- player[8] -> defense -->
+            </tr>
+            <tr>
+                <td>Saúde</td>
+                <td>{{ player[9] }}</td>  <!-- player[9] -> health -->
+            </tr>
+            <tr>
+                <td>Esquiva</td>
+                <td>{{ player[10] }}</td>  <!-- player[10] -> dodge -->
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

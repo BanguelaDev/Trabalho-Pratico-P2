@@ -1,3 +1,5 @@
+<!-- Página inicial -->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -8,25 +10,10 @@
 </head>
 <body>
 
-     <!-- Área do Google Translate Widget -->
-     <div id="google_translate_element"></div>
-    
-     <!-- Script do Google Translate Widget -->
-     <script type="text/javascript">
-         function googleTranslateElementInit() {
-             new google.translate.TranslateElement(
-                 {pageLanguage: 'pt', includedLanguages: 'en,es,fr,de', layout: google.translate.TranslateElement.InlineLayout.SIMPLE},
-                 'google_translate_element'
-             );
-         }
-     </script>
-     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <h1>Olá jogador, seja bem-vindo!</h1>
     <h2>Para começar a aventura, faça login ou registre uma conta.</h2>
 
-    <form action="/loginRegister" method="post">
-
+    <form action="{{ url_for('auth.login') }}" method="post">
         <label for="loginUsername">Nome de usuário:</label>
         <input type="text" id="loginUsername" name="username" required>
 

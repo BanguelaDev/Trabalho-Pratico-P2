@@ -10,8 +10,9 @@
     <div class="form-container">
         <h1>Escolha sua Raça e Vocação</h1>
         
-        <form action="/ticket" method="post">
-            <label for="race">Raça:</label>
+        <form action="{{ url_for('game.ticket') }}" method="post">
+            <form action="/ticket" method="post">
+            <label for="race">+aça:</label>
             <select name="race" id="race" required>
                 {% for race in races.keys() %}
                     <option value="{{ race }}">{{ race.capitalize() }}</option>
