@@ -20,7 +20,7 @@ def race_vocation_selector():
     user_id = session.get('user_id')
     player = get_player_by_user_id(user_id)
         
-    if player and (player[3] != 'Unknown' or player[4] != 'Unknown'):
+    if player and (player['race'] != 'Unknown' or player['vocation'] != 'Unknown'):
         return redirect(url_for('game.ticket'))
 
     return render_template("race_vocation_selector.html", races = races, vocations = vocations)
@@ -41,6 +41,6 @@ def ticket():
     if user_id:
         player = get_player_by_user_id(user_id)
         if player:
-            return render_template("ticket.html", player=player)
+            return render_template("ticket.html", player = player)
     
     return redirect(url_for('auth.homepage'))
