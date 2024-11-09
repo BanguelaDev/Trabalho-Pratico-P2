@@ -1,3 +1,23 @@
+<!--
+
+<table class="stats-table">
+<thead>
+    <tr>
+        <th>Ficha</th>
+        <th>Valor</th>
+    </tr>
+</thead>
+<tbody>
+    {% for field, value in player.items() %}
+    <tr>
+        <td>{{ field | capitalize }}</td>
+        <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+-->
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -10,22 +30,67 @@
 
 <body>
 
+    <div class="welcome-message">Boas vindas, aventureiro! Antes de tudo, aqui está a sua ficha.</div>
+
     <table class="stats-table">
         <thead>
             <tr>
-                <th>Ticket</th>
-                <th>Valor</th>
+                <th colspan="2" class="table-title">Ficha</th>
             </tr>
         </thead>
         <tbody>
-            {% for field, value in player.items() %}
-            <tr>
-                <td>{{ field | capitalize }}</td>
-                <td>{{ value }}</td>
+            <tr class="section-title">
+                <td colspan="2">Informações Gerais</td>
             </tr>
-            {% endfor %}
+            <tr>
+                <td>ID</td>
+                <td>{{ player["id"] }}</td>
+            </tr>
+            <tr>
+                <td>Nome</td>
+                <td>{{ player["name"] }}</td>
+            </tr>
+            <tr>
+                <td>Vocação</td>
+                <td>{{ player["vocation"] }}</td>
+            </tr>
+            <tr>
+                <td>Raça</td>
+                <td>{{ player["race"] }}</td>
+            </tr>
+            <tr>
+                <td>Experiência</td>
+                <td>{{ player["exp"] }}</td>
+            </tr>
+            <tr>
+                <td>Nível</td>
+                <td>{{ player["level"] }}</td>
+            </tr>
+            <!-- Atributos -->
+            <tr class="section-title">
+                <td colspan="2">Atributos</td>
+            </tr>
+            <tr>
+                <td>Ataque</td>
+                <td>{{ player["attack"] }}</td>
+            </tr>
+            <tr>
+                <td>Defesa</td>
+                <td>{{ player["defense"] }}</td>
+            </tr>
+            <tr>
+                <td>Saúde</td>
+                <td>{{ player["health"] }}</td>
+            </tr>
+            <tr>
+                <td>Esquiva</td>
+                <td>{{ player["dodge"] }}</td>
+            </tr>
         </tbody>
     </table>
+
+    <div class="start-message">Vamos começar nossa aventura? Role um dado!</div>
+    <button class="roll-button">Rolar o Dado</button>
 
 </body>
 

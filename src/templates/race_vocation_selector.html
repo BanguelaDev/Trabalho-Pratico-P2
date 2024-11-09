@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Raça e Vocação</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ticketRegister.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/race_vocation_selector.css') }}">
 </head>
 <body>
     <div class="form-container">
         <h1>Escolha sua Raça e Vocação</h1>
         
-        <form action="{{ url_for('game.ticket') }}" method="post">
-            <form action="/ticket" method="post">
+        <form action="{{ url_for('game.tutorial', page = 1) }}" method="post">
             <label for="race">+aça:</label>
             <select name="race" id="race" required>
                 {% for race in races.keys() %}

@@ -52,7 +52,5 @@ def get_player_by_user_id(user_id): # Pegando o jogador usando o respectivo id d
         columns = [desc[0] for desc in cursor.description]  # Pega os nomes das colunas
         player_dict = dict(zip(columns, player_data))  # Cria um dicionário
         
-        print(player_dict)
-        
         return player_dict # Fiz isso pois o player_data é uma tupla, dificultando bastante a manipulação, então achei melhor transformar em um dicionário
     return None

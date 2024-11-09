@@ -4,27 +4,35 @@ from src.database.models import get_player_by_user_id, update_player
 game_bp = Blueprint('game', __name__)
 
 races = {
-    "Anão": {"Vida": 10, "Defesa": 2},
-    "Elfo": {"Esquiva": 3, "Ataque": 1},
-    "Humano": {"Vida": 8, "Ataque": 2}
+    "Anão": {"health": 10, "defense": 2},
+    "Elfo": {"dodge": 3, "attack": 1},
+    "Humano": {"health": 8, "attack": 2}
 }
 
 vocations = {
-    "Guerreiro": {"Ataque": 2, "Defesa": 3},
-    "Arqueiro": {"Esquiva": 2, "Ataque": 2},
-    "Paladino": {"Vida": 5, "Defesa": 2}
+    "Guerreiro": {"attack": 2, "defense": 3},
+    "Arqueiro": {"dodge": 2, "attack": 2},
+    "Paladino": {"health": 5, "defense": 2}
 }
 
 @game_bp.route("/race-vocation-selector", methods=['GET'])
 def race_vocation_selector():
-    user_id = session.get('user_id')
-    player = get_player_by_user_id(user_id)
+    player = get_player_by_user_id(session.get('user_id'))
         
     if player and (player['race'] != 'Unknown' or player['vocation'] != 'Unknown'):
-        return redirect(url_for('game.ticket'))
+        return redirect(url_for('game.tutorial'))
 
     return render_template("race_vocation_selector.html", races = races, vocations = vocations)
 
+@game_bp.route("/tutorial/<int:page>", methods=['GET', 'POST'])
+def tutorial(page):
+    player = get_player_by_user_id(session.get('user_id'))
+    
+    if player:
+        return render_template("tutorial.html", player=player, page=page)
+    
+    return redirect(url_for('auth.homepage'))
+    
 @game_bp.route("/ticket", methods=['GET', 'POST'])
 def ticket():
     user_id = session.get('user_id')
