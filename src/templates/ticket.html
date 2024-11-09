@@ -1,23 +1,3 @@
-<!--
-
-<table class="stats-table">
-<thead>
-    <tr>
-        <th>Ficha</th>
-        <th>Valor</th>
-    </tr>
-</thead>
-<tbody>
-    {% for field, value in player.items() %}
-    <tr>
-        <td>{{ field | capitalize }}</td>
-        <td>{{ value }}</td>
-    </tr>
-    {% endfor %}
-</tbody>
-</table>
--->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -39,9 +19,12 @@
             </tr>
         </thead>
         <tbody>
+
+
             <tr class="section-title">
                 <td colspan="2">Informações Gerais</td>
             </tr>
+
             <tr>
                 <td>ID</td>
                 <td>{{ player["id"] }}</td>
