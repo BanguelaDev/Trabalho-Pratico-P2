@@ -1,27 +1,53 @@
-<!-- Página inicial -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    <title>Página Inicial</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- CDN do Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
 
-    <h1>Olá jogador, seja bem-vindo!</h1>
-    <h2>Para começar a aventura, faça login ou registre uma conta.</h2>
+<body class="bg-gray-900 text-white">
 
-    <form action="{{ url_for('auth.login') }}" method="post">
-        <label for="loginUsername">Nome de usuário:</label>
-        <input type="text" id="loginUsername" name="username" required>
+    <!-- Cabeçalho -->
+    <header class="text-center py-6">
+        <h1 class="text-4xl font-bold text-yellow-400">
+            Bem-vindo à Aventura de Eldoria!
+        </h1>
+    </header>
 
-        <label for="loginPassword">Senha:</label>
-        <input type="password" id="loginPassword" name="password" required>
+    <!-- Instruções e Links -->
+    <div class="container mx-auto px-6 py-8">
+        <div class="text-center text-xl font-medium text-white mb-4">
+            <p><i class="fas fa-arrow-down"></i> Explore as opções abaixo para começar sua jornada.</p>
+        </div>
 
-        <button type="submit">Registrar / Logar</button>
-    </form>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+                <i class="fas fa-sign-in-alt text-yellow-500 text-4xl mb-4"></i>
+                <h2 class="text-2xl font-semibold text-white mb-2">Login</h2>
+                <p class="text-gray-300 mb-4">Faça login para acessar sua conta e aventuras.</p>
+                <a href="/login" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Entrar</a>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+                <i class="fas fa-user-plus text-yellow-500 text-4xl mb-4"></i>
+                <h2 class="text-2xl font-semibold text-white mb-2">Registro</h2>
+                <p class="text-gray-300 mb-4">Crie uma nova conta para começar sua jornada.</p>
+                <a href="/register" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">Registrar</a>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+                <i class="fas fa-info-circle text-yellow-500 text-4xl mb-4"></i>
+                <h2 class="text-2xl font-semibold text-white mb-2">Sobre</h2>
+                <p class="text-gray-300 mb-4">Saiba mais sobre o mundo de Eldoria e suas aventuras.</p>
+                <button onclick="location.href='/sobre'" class="bg-purple-500 hover:bg-purple-600 text-white py-2 px-4 rounded-lg">Ler</button>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>

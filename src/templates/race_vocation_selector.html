@@ -1,32 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seleção de Raça e Vocação</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/race_vocation_selector.css') }}">
+    <title>Escolha sua Raça e Vocação</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- CDN do Tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="form-container">
-        <h1>Escolha sua Raça e Vocação</h1>
-        
-        <form action="{{ url_for('game.tutorial', page = 1) }}" method="post">
-            <label for="race">Raça:</label>
-            <select name="race" id="race" required>
-                {% for race in races.keys() %}
-                    <option value="{{ race }}">{{ race.capitalize() }}</option>
-                {% endfor %}
-            </select>
 
-            <label for="vocation">Vocação:</label>
-            <select name="vocation" id="vocation" required>
-                {% for vocation in vocations.keys() %}
-                    <option value="{{ vocation }}">{{ vocation.capitalize() }}</option>
-                {% endfor %}
-            </select>
+<body class="bg-gray-900 text-white">
 
-            <button type="submit">Confirmar</button>
+    <!-- Título da Seleção -->
+    <div class="text-center text-3xl font-semibold py-6">
+        <i class="fas fa-user-cog text-yellow-500"></i> Escolha sua Raça e Vocação
+    </div>
+
+    <!-- Formulário de Seleção -->
+    <div class="container mx-auto px-6 py-8">
+        <form class="space-y-6">
+            <div class="flex justify-between">
+                <div class="w-1/2">
+                    <label for="race" class="block text-lg font-semibold text-yellow-300 mb-2">
+                        Selecione sua Raça
+                    </label>
+                    <select id="race" name="race" class="w-full bg-gray-800 text-white py-2 px-4 rounded-lg">
+                        <option value="human">Humano</option>
+                        <option value="elf">Elfo</option>
+                        <option value="dwarf">Anão</option>
+                    </select>
+                </div>
+
+                <div class="w-1/2">
+                    <label for="vocation" class="block text-lg font-semibold text-yellow-300 mb-2">
+                        Selecione sua Vocação
+                    </label>
+                    <select id="vocation" name="vocation" class="w-full bg-gray-800 text-white py-2 px-4 rounded-lg">
+                        <option value="warrior">Guerreiro</option>
+                        <option value="archer">Arqueiro</option>
+                        <option value="paladin">Paladino</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg text-xl">
+                    Confirmar Seleção
+                </button>
+            </div>
         </form>
     </div>
+
 </body>
+
 </html>
