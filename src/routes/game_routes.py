@@ -26,7 +26,18 @@ def race_vocation_selector():
 
 @game_bp.route("/tutorial/<int:page>", methods=['GET', 'POST'])
 def tutorial(page):
-    player = get_player_by_user_id(session.get('user_id'))
+    
+    user_id = session.get('user_id')
+    player = get_player_by_user_id(user_id)
+    
+    race = request.form.get('race')
+    vocation = request.form.get('vocation')
+    
+    if race and vocation:
+        update_player(user_id, {
+            'race': race,
+            'vocation': vocation
+        })
     
     if player:
         return render_template("tutorial.html", player=player, page=page)
@@ -36,15 +47,6 @@ def tutorial(page):
 @game_bp.route("/ticket", methods=['GET', 'POST'])
 def ticket():
     user_id = session.get('user_id')
-
-    race = request.form.get('race')
-    vocation = request.form.get('vocation')
-    
-    if race and vocation:
-        update_player(user_id, {
-            'race': race,
-            'vocation': vocation
-        })
 
     if user_id:
         player = get_player_by_user_id(user_id)
