@@ -11,7 +11,7 @@
         <h1>Escolha sua Raça e Vocação</h1>
         
         <form action="{{ url_for('game.tutorial', page = 1) }}" method="post">
-            <label for="race">+aça:</label>
+            <label for="race">Raça:</label>
             <select name="race" id="race" required>
                 {% for race in races.keys() %}
                     <option value="{{ race }}">{{ race.capitalize() }}</option>

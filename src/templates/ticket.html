@@ -5,75 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/ticket.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Ficha do jogador</title>
 </head>
 
 <body>
 
-    <div class="welcome-message">Boas vindas, aventureiro! Antes de tudo, aqui está a sua ficha.</div>
+    <div class="welcome-message">
+        <i class="fas fa-scroll"></i> Boas-vindas, aventureiro! Aqui está a sua ficha.
+    </div>
 
     <table class="stats-table">
         <thead>
             <tr>
-                <th colspan="2" class="table-title">Ficha</th>
+                <th colspan="2" class="table-title"><i class="fas fa-user"></i> Ficha</th>
             </tr>
         </thead>
         <tbody>
 
-
             <tr class="section-title">
-                <td colspan="2">Informações Gerais</td>
+                <td colspan="2"><i class="fas fa-info-circle"></i> Informações Gerais</td>
             </tr>
 
             <tr>
-                <td>ID</td>
+                <td><i class="fas fa-id-badge"></i> ID</td>
                 <td>{{ player["id"] }}</td>
             </tr>
             <tr>
-                <td>Nome</td>
+                <td><i class="fas fa-user"></i> Nome</td>
                 <td>{{ player["name"] }}</td>
             </tr>
             <tr>
-                <td>Vocação</td>
+                <td><i class="fas fa-crosshairs"></i> Vocação</td>
                 <td>{{ player["vocation"] }}</td>
             </tr>
             <tr>
-                <td>Raça</td>
+                <td><i class="fas fa-dragon"></i> Raça</td>
                 <td>{{ player["race"] }}</td>
             </tr>
             <tr>
-                <td>Experiência</td>
+                <td><i class="fas fa-star"></i> Experiência</td>
                 <td>{{ player["exp"] }}</td>
             </tr>
             <tr>
-                <td>Nível</td>
+                <td><i class="fas fa-level-up-alt"></i> Nível</td>
                 <td>{{ player["level"] }}</td>
             </tr>
-            <!-- Atributos -->
+
             <tr class="section-title">
-                <td colspan="2">Atributos</td>
+                <td colspan="2"><i class="fas fa-info-circle"></i> Atributos</td>
             </tr>
+
             <tr>
-                <td>Ataque</td>
+                <td><i class="fas fa-fist-raised"></i> Ataque</td>
                 <td>{{ player["attack"] }}</td>
             </tr>
             <tr>
-                <td>Defesa</td>
+                <td><i class="fas fa-shield-alt"></i> Defesa</td>
                 <td>{{ player["defense"] }}</td>
             </tr>
             <tr>
-                <td>Saúde</td>
+                <td><i class="fas fa-heart"></i> Saúde</td>
                 <td>{{ player["health"] }}</td>
             </tr>
             <tr>
-                <td>Esquiva</td>
+                <td><i class="fas fa-feather-alt"></i> Esquiva</td>
                 <td>{{ player["dodge"] }}</td>
             </tr>
+
         </tbody>
     </table>
 
-    <div class="start-message">Vamos começar nossa aventura? Role um dado!</div>
-    <button class="roll-button">Rolar o Dado</button>
+    <div class="start-message">
+        <i class="fas fa-dice-d20"></i> Vamos começar nossa aventura? Role um dado!
+    </div>
+    <button class="roll-button"><i class="fas fa-dice"></i> Rolar o Dado</button>
 
 </body>
 

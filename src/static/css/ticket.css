@@ -1,24 +1,25 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #1d1b27;
-    color: #f3f3f3;
+    font-family: 'Georgia', serif;
+    color: #F5F5DC;
+    background-color: #1E1E1E;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
     margin: 0;
 }
 
 .welcome-message, .start-message {
-    font-size: 18px;
+    font-size: 25px;
+    color: #D4AF37;
     margin: 10px 0;
     text-align: center;
 }
 
 .roll-button {
-    background-color: #4a2f2f;
-    color: #fff;
+    background-color: #4F7942;
+    color: #F5F5DC;
     font-size: 16px;
     padding: 10px 20px;
     margin-top: 15px;
@@ -26,24 +27,26 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 .roll-button:hover {
-    background-color: #5c3b3b;
+    background-color: #D4AF37;
+    color: #2A2929;
 }
 
 .stats-table {
     width: 50%;
-    background-color: #2a2636;
+    background-color: #2A2929;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     margin: 20px 0;
 }
 
 .table-title {
-    background-color: #5d3c3c;
-    color: #f3f3f3;
+    background-color: #4F7942;
+    color: #D4AF37;
     font-size: 22px;
     text-align: center;
     padding: 12px;
@@ -52,13 +55,13 @@ body {
 
 .stats-table th, .stats-table td {
     padding: 12px 15px;
-    border-bottom: 1px solid #3a3548;
+    border-bottom: 1px solid #5A5A5A;
     text-align: left;
 }
 
 .section-title {
-    background-color: #3c2f42;
-    color: #a7a3b1;
+    background-color: #4F7942;
+    color: #D4AF37;
     text-align: center;
     font-weight: bold;
     padding: 10px;
@@ -66,7 +69,7 @@ body {
 }
 
 .stats-table td {
-    color: #d1d0dc;
+    color: #D4AF37;
 }
 
 .stats-table tr:last-child td {

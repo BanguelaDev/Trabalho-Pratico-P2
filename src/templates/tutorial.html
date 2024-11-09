@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/tutorial.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Tutorial</title>
 </head>
+
 <body>
 
-<div class="tutorial-container">
-    <h2>Tutorial</h2>
-    
-    {% if page == 0 %}
-        <p>Bem-vindo, aventureiro! Esta é sua jornada em Eldoria. Prepare-se para descobrir um mundo de magia e mistérios.</p>
-    {% elif page == 1 %}
-        <p>Aqui você aprenderá o básico de como funcionará a lógica do jogo e seus desafios.</p>
-    {% elif page == 2 %}
-        <p>Desenvolva suas habilidades ao longo do caminho. Cada novo nível traz mais poder e habilidades únicas.</p>
-    {% elif page == 3 %}
-        <p>Pronto para começar? Embarque nessa aventura épica e mostre seu valor!</p>
-    {% endif %}
+    <div class="tutorial-container">
+        <h2><i class="fas fa-scroll"></i> Tutorial</h2>
 
-    <div class="navigation-buttons">
-        {% if page < 3 %}
-            <a href="{{ url_for('game.tutorial', page=page + 1) }}" class="button">Próximo</a>
+        {% if page == 0 %}
+        <p>Bem-vindo, aventureiro! Esta é sua jornada em Eldoria. Prepare-se para descobrir um mundo de magia e
+            mistérios.</p>
+        {% elif page == 1 %}
+        <p>Aqui você aprenderá o básico de como funcionará a lógica do jogo e seus desafios.</p>
+        {% elif page == 2 %}
+        <p>Desenvolva suas habilidades ao longo do caminho. Cada novo nível traz mais poder e habilidades únicas.</p>
+        {% elif page == 3 %}
+        <p>Pronto para começar? Embarque nessa aventura épica e mostre seu valor!</p>
         {% endif %}
-        <a href="{{ url_for('game.ticket') }}" class="button skip">Pular Tudo</a>
+
+        <div class="navigation-buttons">
+            {% if page < 3 %} <a href="{{ url_for('game.tutorial', page=page + 1) }}" class="button">Próximo</a>
+                {% endif %}
+                <a href="{{ url_for('game.ticket') }}" class="button skip">Pular Tudo</a>
+        </div>
+
     </div>
-</div>
 
 </body>
+
 </html>
