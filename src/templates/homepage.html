@@ -6,37 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
     <script src="https://cdn.tailwindcss.com"></script> <!-- CDN do Tailwind -->
+    <style>
+        /* Container holding the image and the text */
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+
+        /* Centered text */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 
 <body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
 
     <!-- Container do conteúdo -->
-    <div class="max-w-md w-full p-6 bg-gray-800 rounded-lg shadow-lg">
-        <!-- Cabeçalho -->
-        <header class="text-center py-6">
-            <h1 class="text-4xl font-bold text-yellow-400">
-                Bem-vindo à Aventura de Eldoria
-            </h1>
-        </header>
+    <div class="container">
+        <img src="../static/img/mapav2.png" class="centered" alt="" width="1200" height="1200" ;>
+        <div class="centered">
+            <!-- Cabeçalho -->
+            <header class="text-center py-6">
+                <h1 class="text-4xl font-bold text-yellow-400 -webkit-text-stroke: 3px black">
+                    Bem-vindo à Aventura de Eldoria!
+                </h1>
+            </header>
 
-        <!-- Seção de Login e Registro -->
-        <div class="space-y-4">
-            <form action="/login" method="POST" class="space-y-4" id="login-form">
-                <h2 class="text-2xl font-semibold text-white mb-4 text-center">Login / Registro</h2>
-                <div class="mb-4">
-                    <label for="username" class="block text-yellow-300 text-lg">Usuário</label>
-                    <input type="text" id="username" name="username" class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
-                </div>
-                <div class="mb-4">
-                    <label for="password" class="block text-yellow-300 text-lg">Senha</label>
-                    <input type="password" id="password" name="password" class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Entrar</button>
-                </div>
-            </form>
+            <!-- Seção de Login e Registro -->
+            <div class="space-y-4">
+                <form action="/login" method="POST" class="space-y-4" id="login-form">
+                    <h2 class="text-2xl font-semibold text-white mb-4 text-center">Login / Registro</h2>
+                    <div class="mb-4">
+                        <label for="username" class="block text-yellow-300 text-lg">Usuário</label>
+                        <input type="text" id="username" name="username"
+                            class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="block text-yellow-300 text-lg">Senha</label>
+                        <input type="password" id="password" name="password"
+                            class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit"
+                            class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Entrar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
 
 </body>
 
