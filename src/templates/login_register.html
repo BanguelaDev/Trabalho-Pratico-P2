@@ -8,10 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
         /* Estilos gerais */
         body {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: 'MedievalSharp', cursive;
             overflow-x: hidden;
+            background-color: black;
         }
 
         /* Estilos de fundo */
@@ -25,28 +28,64 @@
             filter: blur(5px);
             overflow: hidden;
             z-index: -1;
+
+            box-sizing: border-box;
+            box-shadow: inset 0 0 70px 50px black;
         }
 
         /* Título centralizado no topo */
         .title {
-            font-size: 4rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #ffdd57;
             text-shadow: 2px 2px 4px #000;
-            margin-top: 200px;
+            margin-top: 40px;
             text-align: center;
+        }
+
+        /* Container do banner com a imagem */
+        .text-banner-container {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Estilos da imagem do banner */
+        .text-banner {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Estilo do texto dentro do banner */
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffdd57;
+            font-size: 6rem;
+            font-family: 'MedievalSharp', cursive;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px #000;
+            text-transform: uppercase;
+            white-space: nowrap;
+            width: 100%;
         }
 
         /* Estilos do pergaminho */
         .scroll {
-            background-image: url('../static/img/mapav2.png');
+            background-image: url('/static/img/mapav2.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             width: 1000px;
-            padding: 200px;
+            padding: 80px 200px;
             opacity: 0;
-            
+
             transform: scaleX(0);
             transform-origin: center;
             animation: openScroll .5s forwards ease-out;
@@ -100,17 +139,34 @@
         .scroll-form input {
             background-color: #4a5568;
             color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #2d3748;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .scroll-form input:focus {
+            border-color: #ffdd57;
+            box-shadow: 0 0 10px rgba(255, 221, 87, 0.5);
+            outline: none;
         }
 
         .scroll-form button {
             background-color: #3b82f6;
             color: white;
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .scroll-form button:hover {
             background-color: #2563eb;
         }
 
+        /* Botão de alternância para login/registro */
         .toggle-button {
             background-color: transparent;
             border: none;
@@ -121,11 +177,15 @@
             margin-bottom: 20px;
             cursor: pointer;
             opacity: 0;
-
             animation: fadeIn .5s .25s forwards ease-out;
         }
+
+        /* Adicionando ícones de Font Awesome nos botões */
+        .scroll-form button i {
+            margin-right: 8px;
+        }
     </style>
-</head> 
+</head>
 
 <body class="text-white flex flex-col items-center min-h-screen">
 
@@ -133,66 +193,65 @@
     <div class="background-eldoria"></div>
 
     <!-- Título -->
-    <header class="title">Bem-vindo à Eldoria!</header>
+    <header class="title">Bem-vindo à</header>
+
+    <div class="text-banner-container">
+        <img src="/static/img/text-banner.png" alt="Banner" class="text-banner">
+        <div class="text-overlay">Eldoria</div>
+    </div>
 
     <!-- Container dos formulários -->
     <div class="form-container">
 
         {% if not register %}
-            <!-- Pergaminho de Login -->
-            <div class="scroll" id="login-form">
-                <h2 class="form-header">Login</h2>
-                <form action="{{ url_for('auth.login') }}" method="post" class="scroll-form space-y-4">
-                    <div>
-                        <label for="username" class="block text-lg">Usuário</label>
-                        <input type="text" id="username" name="username" class="w-full p-2 rounded-lg" required>
-
-                        {% if error and label == "username" %}
-                            <p class="text-red-500 mt-1 text-sm">{{ error }}</p>
-                        {% endif %}
-
-                    </div>
-                    <div>
-                        <label for="password" class="block text-lg">Senha</label>
-                        <input type="password" id="password" name="password" class="w-full p-2 rounded-lg" required>
-
-                        {% if error and label == "password" %}
-                            <p class="text-red-500 mt-1 text-sm">{{ error }}</p>
-                        {% endif %}
-
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="py-2 px-4 rounded-lg"><i class="fas fa-sign-in-alt"></i> Entrar</button>
-                    </div>
-                </form>
-
-                <div class="text-center mt-10">
-                    <a href="{{ url_for('auth.register') }}" class="toggle-button">Não tem conta? Registre-se</a>
+        <!-- Pergaminho de Login -->
+        <div class="scroll" id="login-form">
+            <h2 class="form-header">Login</h2>
+            <form action="{{ url_for('auth.login') }}" method="post" class="scroll-form space-y-4">
+                <div>
+                    <label for="username" class="block text-lg">Usuário</label>
+                    <input type="text" id="username" name="username" class="w-full" required>
+                    {% if error and label == "username" %}
+                    <p class="text-red-500 mt-1 text-sm">{{ error }}</p>
+                    {% endif %}
                 </div>
+                <div>
+                    <label for="password" class="block text-lg">Senha</label>
+                    <input type="password" id="password" name="password" class="w-full" required>
+                    {% if error and label == "password" %}
+                    <p class="text-red-500 mt-1 text-sm">{{ error }}</p>
+                    {% endif %}
+                </div>
+                <div class="text-center">
+                    <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+                </div>
+            </form>
+            <div class="text-center mt-10">
+                <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
             </div>
+        </div>
 
         {% else %}
-            <!-- Pergaminho de Registro -->
-            <div class="scroll" id="register-form">
-                <h2 class="form-header">Registro</h2>
-                <form action="{{ url_for('auth.register') }}" method="post" class="scroll-form space-y-4">
-                    <div>
-                        <label for="new-username" class="block text-lg">Usuário</label>
-                        <input type="text" id="new-username" name="new-username" class="w-full p-2 rounded-lg" required>
-                    </div>
-                    <div>
-                        <label for="new-password" class="block text-lg">Senha</label>
-                        <input type="password" id="new-password" name="new-password" class="w-full p-2 rounded-lg" required>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="py-2 px-4 rounded-lg"><i class="fas fa-user-plus"></i> Registrar</button>
-                    </div>
-                </form>
-
-                <div class="text-center mt-10">
-                    <a href="{{ url_for('auth.login') }}" class="toggle-button">Já tem uma conta? Faça login</a>
+        <!-- Pergaminho de Registro -->
+        <div class="scroll" id="register-form">
+            <h2 class="form-header">Registro</h2>
+            <form action="{{ url_for('auth.register') }}" method="post" class="scroll-form space-y-4">
+                <div>
+                    <label for="new-username" class="block text-lg">Usuário</label>
+                    <input type="text" id="new-username" name="new-username" class="w-full" required>
                 </div>
+                <div>
+                    <label for="new-password" class="block text-lg">Senha</label>
+                    <input type="password" id="new-password" name="new-password" class="w-full" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit"><i class="fas fa-user-plus"></i> Registrar</button>
+                </div>
+            </form>
+            <div class="text-center mt-10">
+                <a href="{{ url_for('auth.login') }}" class="toggle-button"><i class="fas fa-sign-in-alt"></i> Já tem uma conta? Faça login</a>
             </div>
+        </div>
         {% endif %}
     </div>
 

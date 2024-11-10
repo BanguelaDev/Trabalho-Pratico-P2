@@ -8,7 +8,18 @@
     <script src="https://cdn.tailwindcss.com"></script> <!-- CDN do Tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Centered text */
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+        /* Geral */
+        body {
+            font-family: 'MedievalSharp', cursive;
+            background-image: url('/static/img/parede.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        /* Centralizar conteúdo */
         .centered {
             position: absolute;
             top: 50%;
@@ -16,29 +27,25 @@
             transform: translate(-50%, -50%);
         }
 
-        i {
-            text-shadow:
-                1px 1px 0 black,
-                -1px 1px 0 black,
-                1px -1px 0 black,
-                -1px -1px 0 black,
-                1px 0px 0 black,
-                -1px 0px 0 black,
-                0px 1px 0 black,
-                0px -1px 0 black;
+        td {
+            padding: 1rem;
+            text-align: left;
+            font-size: 1rem;
         }
 
-        .background-parede {
-            background-image: url('/static/img/parede.jpg');
-            background-size: cover;
-            background-position: center;
+        /* Linhas alternadas */
+        tr:nth-child(even) {
+            background-color: #2d3748;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #4a5568;
         }
     </style>
 </head>
 
 <body class="background-parede text-white flex items-center justify-center min-h-screen">
-    <div class="max-w-lg w-full p-6 centered">
-
+    <div class="max-w-4x2 w-full p-6 centered"> <!-- Tamanho maior da tabela -->
         <div class="flex flex-col items-center justify-center min-h-screen p-6">
 
             <body class="bg-gray-900 text-white">
@@ -49,11 +56,11 @@
                 </div>
 
                 <!-- Tabela de Atributos -->
-                <div class="container mx-auto px 6 py 10">
+                <div class="container mx-auto px-6 py-10">
                     <table class="table-auto w-full bg-gray-800 rounded-lg shadow-lg">
                         <thead>
                             <tr class="bg-gray-700">
-                                <th colspan="2" class="text-center py-3 text-xl font-bold text-yellow-400">
+                                <th colspan="2" class="text-center py-4 text-xl font-bold text-yellow-400"> <!-- Mais espaço na célula -->
                                     <i class="fas fa-user"></i> Ficha
                                 </th>
                             </tr>
@@ -68,28 +75,28 @@
                             </tr>
 
                             <tr class="bg-gray-800">
-                                <td class="py-3 px-4"><i class="fas fa-id-badge"></i> ID</td>
-                                <td class="py-3 px-4">{{ player["id"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-id-badge"></i> ID</td> <!-- Mais espaço nas células -->
+                                <td class="py-4 px-6">{{ player["id"] }}</td>
                             </tr>
                             <tr class="bg-gray-700">
-                                <td class="py-3 px-4"><i class="fas fa-user"></i> Nome</td>
-                                <td class="py-3 px-4">{{ player["name"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-user"></i> Nome</td>
+                                <td class="py-4 px-6">{{ player["name"] }}</td>
                             </tr>
                             <tr class="bg-gray-800">
-                                <td class="py-3 px-4"><i class="fas fa-crosshairs"></i> Vocação</td>
-                                <td class="py-3 px-4">{{ player["vocation"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-crosshairs"></i> Vocação</td>
+                                <td class="py-4 px-6">{{ player["vocation"] }}</td>
                             </tr>
                             <tr class="bg-gray-700">
-                                <td class="py-3 px-4"><i class="fas fa-dragon"></i> Raça</td>
-                                <td class="py-3 px-4">{{ player["race"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-dragon"></i> Raça</td>
+                                <td class="py-4 px-6">{{ player["race"] }}</td>
                             </tr>
                             <tr class="bg-gray-800">
-                                <td class="py-3 px-4"><i class="fas fa-star"></i> Experiência</td>
-                                <td class="py-3 px-4">{{ player["exp"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-star"></i> Experiência</td>
+                                <td class="py-4 px-6">{{ player["exp"] }}</td>
                             </tr>
                             <tr class="bg-gray-700">
-                                <td class="py-3 px-4"><i class="fas fa-level-up-alt"></i> Nível</td>
-                                <td class="py-3 px-4">{{ player["level"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-level-up-alt"></i> Nível</td>
+                                <td class="py-4 px-6">{{ player["level"] }}</td>
                             </tr>
 
                             <!-- Atributos -->
@@ -100,20 +107,20 @@
                             </tr>
 
                             <tr class="bg-gray-800">
-                                <td class="py-3 px-4"><i class="fas fa-fist-raised"></i> Ataque</td>
-                                <td class="py-3 px-4">{{ player["attack"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-fist-raised"></i> Ataque</td>
+                                <td class="py-4 px-6">{{ player["attack"] }}</td>
                             </tr>
                             <tr class="bg-gray-700">
-                                <td class="py-3 px-4"><i class="fas fa-shield-alt"></i> Defesa</td>
-                                <td class="py-3 px-4">{{ player["defense"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-shield-alt"></i> Defesa</td>
+                                <td class="py-4 px-6">{{ player["defense"] }}</td>
                             </tr>
                             <tr class="bg-gray-800">
-                                <td class="py-3 px-4"><i class="fas fa-heart"></i> Saúde</td>
-                                <td class="py-3 px-4">{{ player["health"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-heart"></i> Saúde</td>
+                                <td class="py-4 px-6">{{ player["health"] }}</td>
                             </tr>
                             <tr class="bg-gray-700">
-                                <td class="py-3 px-4"><i class="fas fa-feather-alt"></i> Esquiva</td>
-                                <td class="py-3 px-4">{{ player["dodge"] }}</td>
+                                <td class="py-4 px-6"><i class="fas fa-feather-alt"></i> Esquiva</td>
+                                <td class="py-4 px-6">{{ player["dodge"] }}</td>
                             </tr>
 
                         </tbody>
@@ -125,12 +132,14 @@
                     <i class="fas fa-dice-d20 text-yellow-500"></i> Vamos começar nossa aventura? Role um dado!
                 </div>
                 <div class="text-center">
-                    <button
-                        class="roll-button bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg text-lg font-semibold">
+                    <button class="roll-button bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg text-lg font-semibold">
                         <i class="fas fa-dice"></i> Rolar o Dado
                     </button>
                 </div>
 
             </body>
+        </div>
+    </div>
+</body>
 
 </html>
