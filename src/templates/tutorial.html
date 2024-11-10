@@ -7,9 +7,38 @@
     <title>Tutorial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Centered text */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h1, h2, label {
+            text-shadow:
+                1px 1px 0 black,
+                -1px 1px 0 black,
+                1px -1px 0 black,
+                -1px -1px 0 black,
+                1px 0px 0 black,
+                -1px 0px 0 black,
+                0px 1px 0 black,
+                0px -1px 0 black;
+        }
+        .background-parede {
+            background-image: url('/static/img/parede.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+    </style>
 </head>
 
-<body class="bg-gray-900 text-white font-sans">
+
+<body class="background-parede text-white flex items-center justify-center min-h-screen">
+    <img src="../static/img/mapav2.png" class="centered" alt="" width="800" height="800" ;>
+    <div class="max-w-lg w-full p-6 centered">
 
     <div class="flex flex-col items-center justify-center min-h-screen p-6">
 
