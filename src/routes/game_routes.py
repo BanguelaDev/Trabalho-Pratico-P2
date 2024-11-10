@@ -42,7 +42,7 @@ def tutorial(page):
     if player:
         return render_template("tutorial.html", player=player, page=page)
     
-    return redirect(url_for('auth.homepage'))
+    return redirect(url_for('auth.login_register'))
     
 @game_bp.route("/ticket", methods=['GET', 'POST'])
 def ticket():
@@ -53,4 +53,4 @@ def ticket():
         if player:
             return render_template("ticket.html", player = player)
     
-    return redirect(url_for('auth.homepage'))
+    return redirect(url_for('auth.login_register'))
