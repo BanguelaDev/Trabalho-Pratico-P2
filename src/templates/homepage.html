@@ -5,87 +5,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Inicial</title>
-    <script src="https://cdn.tailwindcss.com"></script> <!-- CDN do Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Container holding the image and the text */
-        .container {
-            position: relative;
+        /* Estilos gerais */
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Estilos de fundo */
+        .background-eldoria {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('/static/img/eldoria-fundo.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px);
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        /* Título centralizado no topo */
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffdd57;
+            text-shadow: 2px 2px 4px #000;
+            margin-top: 400px;
             text-align: center;
+        }
+
+        /* Estilos do pergaminho */
+        .scroll {
+            background-image: url('../static/img/mapav2.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 720px;
+            min-height: 400px;
+            border-radius: 15px;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 100px;
+            opacity: 0;
+            /* Começa invisível */
+            transform: scaleX(0);
+            /* Começa "fechado" */
+            transform-origin: center;
+            /* Ponto de origem da transformação */
+            animation: openScroll .5s forwards ease-out;
+            /* Animação de desdobramento */
+        }
+
+        /* Keyframes para a animação de desdobramento */
+        @keyframes openScroll {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        /* Estilos do título no pergaminho */
+        .form-header {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffdd57;
+            text-align: center;
+            text-shadow: 1px 1px 2px #000;
+            opacity: 0;
+            /* Começa invisível */
+            animation: fadeIn 2s .25s forwards ease-out;
+            /* Animação de fade-in com delay */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Estilos do formulário */
+        .scroll-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 2s .25s forwards ease-out;
+        }
+
+        /* Inputs e botão do formulário */
+        .scroll-form input {
+            background-color: #4a5568;
             color: white;
         }
 
-        .background-eldoria {
-            background-image: url('/static/img/eldoria-fundo.webp');
-            background-size: cover;
-            background-position: center;
+        .scroll-form button {
+            background-color: #3b82f6;
+            color: white;
         }
 
-
-        /* Centered text */
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .scroll-form button:hover {
+            background-color: #2563eb;
         }
 
-        h1, h2, label {
-            text-shadow:
-                1px 1px 0 black,
-                -1px 1px 0 black,
-                1px -1px 0 black,
-                -1px -1px 0 black,
-                1px 0px 0 black,
-                -1px 0px 0 black,
-                0px 1px 0 black,
-                0px -1px 0 black;
-        }
-
-     
-
-        body {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        .toggle-button {
+            background-color: transparent;
+            border: none;
+            color: #ffdd57;
+            font-size: 1.2rem;
+            text-decoration: underline;
+            text-shadow: 1px 1px 2px #000;
+            margin-bottom: 20px;
+            cursor: pointer;
         }
     </style>
+</head> 
 
-</head>
-<!--"../static/img/eldoria ai ó.webp/<body class="bg-eldoria-fundo bg-cover bg-center text-white flex items-center justify-center min-h-screen" >-->
+<body class="text-white flex flex-col items-center min-h-screen">
 
-<body class="background-eldoria text-white flex items-center justify-center min-h-screen">
-    <!-- Container do conteúdo -->
-    <div class="container">
-        <img src="../static/img/mapav2.png" class="centered" alt="" width="800" height="800" ;>
-        <div class="centered">
-            <!-- Cabeçalho -->
-            <header class="text-center py-6">
-                <h1 class="text-4xl font-bold text-amber-600">
-                    Bem-vindo à Aventura de Eldoria!
-                </h1>
-            </header>
+    <!-- Background -->
+    <div class="background-eldoria"></div>
 
-            <!-- Seção de Login e Registro -->
-            <div class="space-y-4">
-                <form action="/login" method="POST" class="space-y-4" id="login-form">
-                    <h2 class="text-2xl font-semibold text-white mb-4 text-center">Login / Registro</h2>
-                    <div class="mb-4">
-                        <label for="username" class="block text-yellow-400 text-lg">Usuário</label>
-                        <input type="text" id="username" name="username"
-                            class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="block text-yellow-400 text-lg">Senha</label>
-                        <input type="password" id="password" name="password"
-                            class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit"
-                            class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">Entrar</button>
-                    </div>
-                </form>
+    <!-- Título -->
+    <header class="title">Bem-vindo à Eldoria!</header>
+
+    <!-- Container dos formulários -->
+    <div class="form-container">
+        <!-- Pergaminho de Login -->
+        <div class="scroll" id="login-form">
+            <h2 class="form-header">Login</h2>
+            <form action="/login" method="POST" class="scroll-form space-y-4">
+                <div>
+                    <label for="username" class="block text-lg">Usuário</label>
+                    <input type="text" id="username" name="username" class="w-full p-2 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="password" class="block text-lg">Senha</label>
+                    <input type="password" id="password" name="password" class="w-full p-2 rounded-lg" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="py-2 px-4 rounded-lg"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+                </div>
+            </form>
+            <div class="text-center mt-4">
+                <button class="toggle-button" onclick="toggleForms('register')">Não tem conta? Registre-se</button>
+            </div>
+        </div>
+
+        <!-- Pergaminho de Registro -->
+        <div class="scroll" id="register-form" style="display:none;">
+            <h2 class="form-header">Registro</h2>
+            <form action="/register" method="POST" class="scroll-form space-y-4">
+                <div>
+                    <label for="new-username" class="block text-lg">Novo Usuário</label>
+                    <input type="text" id="new-username" name="new-username" class="w-full p-2 rounded-lg" required>
+                </div>
+                <div>
+                    <label for="new-password" class="block text-lg">Nova Senha</label>
+                    <input type="password" id="new-password" name="new-password" class="w-full p-2 rounded-lg" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="py-2 px-4 rounded-lg"><i class="fas fa-user-plus"></i> Registrar</button>
+                </div>
+            </form>
+            <div class="text-center mt-4">
+                <button class="toggle-button" onclick="toggleForms('login')">Já tem uma conta? Faça login</button>
             </div>
         </div>
     </div>
 
+    <script>
+        function toggleForms(formType) {
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            if (formType === 'register') {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'flex';
+            } else {
+                loginForm.style.display = 'flex';
+                registerForm.style.display = 'none';
+            }
+        }
+    </script>
 
 </body>
 
