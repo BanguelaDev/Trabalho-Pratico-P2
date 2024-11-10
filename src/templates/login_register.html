@@ -74,7 +74,7 @@
             text-shadow: 1px 1px 2px #000;
             opacity: 0;
 
-            animation: fadeIn 2s .25s forwards ease-out;
+            animation: fadeIn .5s .25s forwards ease-out;
         }
 
         @keyframes fadeIn {
@@ -93,7 +93,7 @@
             flex-direction: column;
             gap: 20px;
             opacity: 0;
-            animation: fadeIn 2s .25s forwards ease-out;
+            animation: fadeIn .5s .25s forwards ease-out;
         }
 
         /* Inputs e botão do formulário */
@@ -120,6 +120,9 @@
             text-shadow: 1px 1px 2px #000;
             margin-bottom: 20px;
             cursor: pointer;
+            opacity: 0;
+
+            animation: fadeIn .5s .25s forwards ease-out;
         }
     </style>
 </head> 
@@ -135,7 +138,7 @@
     <!-- Container dos formulários -->
     <div class="form-container">
 
-        {% if register == False %}
+        {% if not register %}
             <!-- Pergaminho de Login -->
             <div class="scroll" id="login-form">
                 <h2 class="form-header">Login</h2>
@@ -163,24 +166,22 @@
                     </div>
                 </form>
 
-                <form action="{{ url_for('auth.register') }}" method="get" class="scroll-form space-y-4">
-                    <div class="text-center mt-4">
-                        <button type="submit" class="toggle-button">Não tem conta? Registre-se</button>
-                    </div>
-                </form>
+                <div class="text-center mt-10">
+                    <a href="{{ url_for('auth.register') }}" class="toggle-button">Não tem conta? Registre-se</a>
+                </div>
             </div>
 
         {% else %}
             <!-- Pergaminho de Registro -->
-            <div class="scroll" id="register-form" style="display:none;">
+            <div class="scroll" id="register-form">
                 <h2 class="form-header">Registro</h2>
                 <form action="{{ url_for('auth.register') }}" method="post" class="scroll-form space-y-4">
                     <div>
-                        <label for="new-username" class="block text-lg">Novo Usuário</label>
+                        <label for="new-username" class="block text-lg">Usuário</label>
                         <input type="text" id="new-username" name="new-username" class="w-full p-2 rounded-lg" required>
                     </div>
                     <div>
-                        <label for="new-password" class="block text-lg">Nova Senha</label>
+                        <label for="new-password" class="block text-lg">Senha</label>
                         <input type="password" id="new-password" name="new-password" class="w-full p-2 rounded-lg" required>
                     </div>
                     <div class="text-center">
@@ -188,11 +189,9 @@
                     </div>
                 </form>
 
-                <form action="{{ url_for('auth.login') }}" method="get" class="scroll-form space-y-4">
-                    <div class="text-center mt-4">
-                        <button type="submit" class="toggle-button">Já tem uma conta? Faça login</button>
-                    </div>
-                </form>
+                <div class="text-center mt-10">
+                    <a href="{{ url_for('auth.login') }}" class="toggle-button">Já tem uma conta? Faça login</a>
+                </div>
             </div>
         {% endif %}
     </div>
