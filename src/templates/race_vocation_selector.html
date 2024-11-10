@@ -5,11 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Raça e Vocação</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <style>
+         /* Centered text */
+         .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        h1, h2, label {
+            text-shadow:
+                1px 1px 0 black,
+                -1px 1px 0 black,
+                1px -1px 0 black,
+                -1px -1px 0 black,
+                1px 0px 0 black,
+                -1px 0px 0 black,
+                0px 1px 0 black,
+                0px -1px 0 black;
+        }
+        .background-parede {
+            background-image: url('/static/img/parede.jpg');
+            background-size: cover;
+            background-position: center;
+        }
 
-    <div class="max-w-lg w-full p-6 bg-gray-800 rounded-lg shadow-lg">
-        <h1 class="text-3xl font-bold text-yellow-400 text-center mb-6">
+
+    </style>
+</head>
+<body class="background-parede text-white flex items-center justify-center min-h-screen">
+    <img src="../static/img/mapav2.png" class="centered" alt="" width="800" height="800" ;>
+    <div class="max-w-lg w-full p-6 centered">
+        <h1 class="text-3xl font-bold text-amber-600 text-center mb-6">
             Escolha sua Raça e Vocação
         </h1>
 

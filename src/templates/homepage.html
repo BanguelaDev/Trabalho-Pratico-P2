@@ -16,7 +16,7 @@
 
         .background-eldoria {
             background-image: url('/static/img/eldoria-fundo.webp');
-            background-size: cover;    
+            background-size: cover;
             background-position: center;
         }
 
@@ -29,9 +29,19 @@
             transform: translate(-50%, -50%);
         }
 
-        h1 {
-            -webkit-text-stroke: 1.5px black;
+        h1, h2, label {
+            text-shadow:
+                1px 1px 0 black,
+                -1px 1px 0 black,
+                1px -1px 0 black,
+                -1px -1px 0 black,
+                1px 0px 0 black,
+                -1px 0px 0 black,
+                0px 1px 0 black,
+                0px -1px 0 black;
         }
+
+     
 
         body {
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -58,12 +68,12 @@
                 <form action="/login" method="POST" class="space-y-4" id="login-form">
                     <h2 class="text-2xl font-semibold text-white mb-4 text-center">Login / Registro</h2>
                     <div class="mb-4">
-                        <label for="username" class="block text-yellow-300 text-lg">Usuário</label>
+                        <label for="username" class="block text-yellow-400 text-lg">Usuário</label>
                         <input type="text" id="username" name="username"
                             class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
                     </div>
                     <div class="mb-4">
-                        <label for="password" class="block text-yellow-300 text-lg">Senha</label>
+                        <label for="password" class="block text-yellow-400 text-lg">Senha</label>
                         <input type="password" id="password" name="password"
                             class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
                     </div>
