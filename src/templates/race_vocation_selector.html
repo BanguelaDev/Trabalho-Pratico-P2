@@ -1,74 +1,234 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleção de Raça e Vocação</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
-         /* Centered text */
-         .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        /* Estilos gerais */
+        body {
+            font-family: 'MedievalSharp', cursive;
+            overflow-x: hidden;
+            background-color: black;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        h1, h2, label {
-            text-shadow:
-                1px 1px 0 black,
-                -1px 1px 0 black,
-                1px -1px 0 black,
-                -1px -1px 0 black,
-                1px 0px 0 black,
-                -1px 0px 0 black,
-                0px 1px 0 black,
-                0px -1px 0 black;
-        }
-        .background-parede {
+
+        /* Estilos de fundo */
+        .background-wall {
+            position: fixed;
+            width: 100%;
+            height: 100%;
             background-image: url('/static/img/parede.jpg');
             background-size: cover;
             background-position: center;
+            filter: blur(5px);
+            overflow: hidden;
+            z-index: -1;
+            box-sizing: border-box;
+            box-shadow: inset 0 0 70px 50px black;
         }
 
+        /* Pergaminho com animação */
+        .scroll {
+            position: relative;
+            background-image: url('/static/img/mapav2.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 1000px;
+            padding: 80px 200px;
+            opacity: 0;
+            transform-origin: center;
+            animation: openScroll .5s forwards ease-out;
+        }
+
+        @keyframes openScroll {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        /* Estilos do título no pergaminho */
+        .form-header {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffdd57;
+            text-align: center;
+            text-shadow: 1px 1px 2px #000;
+            opacity: 0;
+            animation: fadeIn .5s .25s forwards ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Estilos do formulário */
+        .scroll-form {
+            display:grid;
+            flex-direction: column;
+            gap: 25px;
+            opacity: 0;
+            animation: fadeIn .5s .25s forwards ease-out;
+        }
+
+        /* Inputs e botão do formulário */
+        .scroll-form select,
+        .scroll-form button {
+            background-color: #4a5568;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid #2d3748;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .scroll-form select:focus,
+        .scroll-form button:hover {
+            border-color: #ffdd57;
+            box-shadow: 0 0 10px rgba(255, 221, 87, 0.5);
+            outline: none;
+        }
+
+        /* Botão de envio */
+        .scroll-form button {
+            background-color: #3b82f6;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Estilo para ícones no botão */
+        .scroll-form button i {
+            margin-right: 8px;
+        }
+
+        /* Estilos para mostrar a imagem e o ícone */
+
+        .race-image {
+            bottom: 275px;
+            left: 125px;
+            position: absolute;
+        }
+
+        .vocation-icon {
+            bottom: 170px;
+            left: 135px;
+            text-align: center;
+            position: absolute;
+        }
     </style>
 </head>
-<body class="background-parede text-white flex items-center justify-center min-h-screen">
-    <img src="/static/img/mapav2.png" class="centered" alt="" width="800" height="800" ;>
-    <div class="max-w-lg w-full p-6 centered">
-        <h1 class="text-3xl font-bold text-amber-600 text-center mb-6">
-            Escolha sua Raça e Vocação
-        </h1>
 
-        <!-- Formulário de Seleção de Raça e Vocação -->
-        <form action="{{ url_for('game.tutorial', page = 0) }}" method="post" class="space-y-4">
-            <div>
-                <label for="race" class="block text-yellow-300 text-lg">Selecione sua Raça:</label>
+<body class="text-white flex flex-col items-center min-h-screen">
 
-                <select name="race" id="race" class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
-                    {% for race in races.keys() %}
-                        <option value="{{ race }}">{{ race.capitalize() }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+    <!-- Background -->
+    <div class="background-wall"></div>
 
-            <div>
-                <label for="vocation" class="block text-yellow-300 text-lg">Selecione sua Vocação:</label>
+    <!-- Container do formulário -->
+    <div class="form-container">
 
-                <select name="vocation" id="vocation" class="w-full p-2 bg-gray-700 text-white rounded-lg" required>
-                    {% for vocation in vocations.keys() %}
-                        <option value="{{ vocation }}">{{ vocation.capitalize() }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+        <!-- Pergaminho para seleção de raça e vocação -->
+        <div class="scroll" id="race-vocation-form">
+            <h2 class="form-header">Escolha sua Raça e Vocação</h2>
+            <form action="{{ url_for('game.tutorial', page=0) }}" method="post" class="scroll-form space-y-4">
+                <!-- Selecione a Raça -->
+                <div>
+                    <label for="race" class="block text-lg">Selecione sua Raça</label>
+                    <select name="race" id="race" class="w-full" required onchange="showSelectedImages()">
+                        <option value="" disabled selected hidden>Raça</option>
+                        {% for race in races.keys() %}
+                            <option value="{{ race }}">{{ race.capitalize() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-            <div class="text-center mt-6">
+                <!-- Selecione a Vocação -->
+                <div>
+                    <label for="vocation" class="block text-lg">Selecione sua Vocação</label>
+                    <select name="vocation" id="vocation" class="w-full" required onchange="showSelectedImages()">
+                        <option value="" disabled selected hidden>Vocação</option>
+                        {% for vocation in vocations.keys() %}
+                            <option value="{{ vocation }}">{{ vocation.capitalize() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
                 <!-- Botão de confirmação -->
-                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg">Confirmar</button>
+                <div class="text-center">
+                    <button type="submit"><i class="fas fa-check-circle"></i> Confirmar</button>
+                </div>
+            </form>
+
+            <!-- Espaços para mostrar imagem da raça e ícone da vocação -->
+            <div class="race-image" id="race-image">
+                <!-- Aqui a imagem da raça será exibida -->
             </div>
-        </form>
+            <div class="vocation-icon" id="vocation-icon">
+                <!-- Aqui o ícone da vocação será exibido -->
+            </div>
+
+        </div>
+
     </div>
 
+    <script>
+        // Mapeamento das imagens de raças
+        const raceImages = {
+            "anão": "/static/img/anão.png",
+            "elfo": "/static/img/elfão.png",
+            "humano": "/static/img/sapiens.png"
+        };
+
+        // Mapeamento dos ícones de vocações (Font Awesome)
+        const vocationIcons = {
+            "guerreiro": "fas fa-sword",
+            "arqueiro": "fas fa-bow-arrow",
+            "paladino": "fas fa-shield-alt"
+        };
+
+        // Função para atualizar a imagem da raça
+        const raceSelect = document.getElementById('race');
+        const raceImage = document.getElementById('race-image');
+        raceSelect.addEventListener('change', function() {
+            const selectedRace = raceSelect.value.toLowerCase();
+            if (raceImages[selectedRace]) {
+                raceImage.innerHTML = `<img src="${raceImages[selectedRace]}" alt="${selectedRace}" style="max-width: 70px; border-radius: 50%;"/>`;
+            }
+        });
+
+        // Função para atualizar o ícone da vocação
+        const vocationSelect = document.getElementById('vocation');
+        const vocationIcon = document.getElementById('vocation-icon');
+        vocationSelect.addEventListener('change', function() {
+            const selectedVocation = vocationSelect.value.toLowerCase();
+            if (vocationIcons[selectedVocation]) {
+                vocationIcon.innerHTML = `<i class="${vocationIcons[selectedVocation]}" style="font-size: 50px;"></i>`;
+            }
+        });
+    </script>
+
 </body>
+
 </html>

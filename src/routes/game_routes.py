@@ -4,9 +4,9 @@ from src.database.models import get_player_by_user_id, update_player
 game_bp = Blueprint('game', __name__)
 
 races = {
+    "Humano": {"health": 8, "attack": 2},
     "Anão": {"health": 10, "defense": 2},
     "Elfo": {"dodge": 3, "attack": 1},
-    "Humano": {"health": 8, "attack": 2}
 }
 
 vocations = {
