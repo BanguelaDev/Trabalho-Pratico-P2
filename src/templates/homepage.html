@@ -14,6 +14,12 @@
             color: white;
         }
 
+        .background-eldoria {
+            background-image: url('/static/img/eldoria-fundo.webp');
+            background-size: cover;    
+            background-position: center;
+        }
+
 
         /* Centered text */
         .centered {
@@ -22,18 +28,27 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        h1 {
+            -webkit-text-stroke: 1.5px black;
+        }
+
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
     </style>
+
 </head>
+<!--"../static/img/eldoria ai ó.webp/<body class="bg-eldoria-fundo bg-cover bg-center text-white flex items-center justify-center min-h-screen" >-->
 
-<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
-
+<body class="background-eldoria text-white flex items-center justify-center min-h-screen">
     <!-- Container do conteúdo -->
     <div class="container">
-        <img src="../static/img/mapav2.png" class="centered" alt="" width="1200" height="1200" ;>
+        <img src="../static/img/mapav2.png" class="centered" alt="" width="800" height="800" ;>
         <div class="centered">
             <!-- Cabeçalho -->
             <header class="text-center py-6">
-                <h1 class="text-4xl font-bold text-yellow-400 -webkit-text-stroke: 3px black">
+                <h1 class="text-4xl font-bold text-amber-600">
                     Bem-vindo à Aventura de Eldoria!
                 </h1>
             </header>

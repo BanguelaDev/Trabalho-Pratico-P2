@@ -10,6 +10,9 @@ module.exports = {
         'scroll-border': '#f5f5f5',
         'scroll-shadow': '#000000'
       },
+      backgroundImage:{
+        'eldoria-fundo': 'url("/src/static/img/eldoria-fundo.webp")'
+      }
     },
   },
   plugins: [],
