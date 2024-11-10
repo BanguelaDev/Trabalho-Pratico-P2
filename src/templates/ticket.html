@@ -7,97 +7,130 @@
     <title>Ficha do Jogador</title>
     <script src="https://cdn.tailwindcss.com"></script> <!-- CDN do Tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Centered text */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        i {
+            text-shadow:
+                1px 1px 0 black,
+                -1px 1px 0 black,
+                1px -1px 0 black,
+                -1px -1px 0 black,
+                1px 0px 0 black,
+                -1px 0px 0 black,
+                0px 1px 0 black,
+                0px -1px 0 black;
+        }
+
+        .background-parede {
+            background-image: url('/static/img/parede.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-900 text-white">
+<body class="background-parede text-white flex items-center justify-center min-h-screen">
+    <div class="max-w-lg w-full p-6 centered">
 
-    <!-- Mensagem de Boas-vindas -->
-    <div class="welcome-message text-center text-2xl font-semibold py-6">
-        <i class="fas fa-scroll text-yellow-500"></i> Boas-vindas, aventureiro! Aqui está a sua ficha.
-    </div>
+        <div class="flex flex-col items-center justify-center min-h-screen p-6">
 
-    <!-- Tabela de Atributos -->
-    <div class="container mx-auto px-6 py-8">
-        <table class="table-auto w-full bg-gray-800 rounded-lg shadow-lg">
-            <thead>
-                <tr class="bg-gray-700">
-                    <th colspan="2" class="text-center py-3 text-xl font-bold text-yellow-400">
-                        <i class="fas fa-user"></i> Ficha
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+            <body class="bg-gray-900 text-white">
 
-                <!-- Informações Gerais -->
-                <tr class="bg-gray-700">
-                    <td colspan="2" class="text-xl font-semibold py-2 text-yellow-300">
-                        <i class="fas fa-info-circle"></i> Informações Gerais
-                    </td>
-                </tr>
+                <!-- Mensagem de Boas-vindas -->
+                <div class="welcome-message text-center text-2xl font-semibold py-6">
+                    <i class="fas fa-scroll text-yellow-500"></i> Boas-vindas, aventureiro! Aqui está a sua ficha.
+                </div>
 
-                <tr class="bg-gray-800">
-                    <td class="py-3 px-4"><i class="fas fa-id-badge"></i> ID</td>
-                    <td class="py-3 px-4">{{ player["id"] }}</td>
-                </tr>
-                <tr class="bg-gray-700">
-                    <td class="py-3 px-4"><i class="fas fa-user"></i> Nome</td>
-                    <td class="py-3 px-4">{{ player["name"] }}</td>
-                </tr>
-                <tr class="bg-gray-800">
-                    <td class="py-3 px-4"><i class="fas fa-crosshairs"></i> Vocação</td>
-                    <td class="py-3 px-4">{{ player["vocation"] }}</td>
-                </tr>
-                <tr class="bg-gray-700">
-                    <td class="py-3 px-4"><i class="fas fa-dragon"></i> Raça</td>
-                    <td class="py-3 px-4">{{ player["race"] }}</td>
-                </tr>
-                <tr class="bg-gray-800">
-                    <td class="py-3 px-4"><i class="fas fa-star"></i> Experiência</td>
-                    <td class="py-3 px-4">{{ player["exp"] }}</td>
-                </tr>
-                <tr class="bg-gray-700">
-                    <td class="py-3 px-4"><i class="fas fa-level-up-alt"></i> Nível</td>
-                    <td class="py-3 px-4">{{ player["level"] }}</td>
-                </tr>
+                <!-- Tabela de Atributos -->
+                <div class="container mx-auto px 6 py 10">
+                    <table class="table-auto w-full bg-gray-800 rounded-lg shadow-lg">
+                        <thead>
+                            <tr class="bg-gray-700">
+                                <th colspan="2" class="text-center py-3 text-xl font-bold text-yellow-400">
+                                    <i class="fas fa-user"></i> Ficha
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                <!-- Atributos -->
-                <tr class="bg-gray-700">
-                    <td colspan="2" class="text-xl font-semibold py-2 text-yellow-300">
-                        <i class="fas fa-info-circle"></i> Atributos
-                    </td>
-                </tr>
+                            <!-- Informações Gerais -->
+                            <tr class="bg-gray-700">
+                                <td colspan="2" class="text-xl font-semibold py-2 text-yellow-300">
+                                    <i class="fas fa-info-circle"></i> Informações Gerais
+                                </td>
+                            </tr>
 
-                <tr class="bg-gray-800">
-                    <td class="py-3 px-4"><i class="fas fa-fist-raised"></i> Ataque</td>
-                    <td class="py-3 px-4">{{ player["attack"] }}</td>
-                </tr>
-                <tr class="bg-gray-700">
-                    <td class="py-3 px-4"><i class="fas fa-shield-alt"></i> Defesa</td>
-                    <td class="py-3 px-4">{{ player["defense"] }}</td>
-                </tr>
-                <tr class="bg-gray-800">
-                    <td class="py-3 px-4"><i class="fas fa-heart"></i> Saúde</td>
-                    <td class="py-3 px-4">{{ player["health"] }}</td>
-                </tr>
-                <tr class="bg-gray-700">
-                    <td class="py-3 px-4"><i class="fas fa-feather-alt"></i> Esquiva</td>
-                    <td class="py-3 px-4">{{ player["dodge"] }}</td>
-                </tr>
+                            <tr class="bg-gray-800">
+                                <td class="py-3 px-4"><i class="fas fa-id-badge"></i> ID</td>
+                                <td class="py-3 px-4">{{ player["id"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-700">
+                                <td class="py-3 px-4"><i class="fas fa-user"></i> Nome</td>
+                                <td class="py-3 px-4">{{ player["name"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-800">
+                                <td class="py-3 px-4"><i class="fas fa-crosshairs"></i> Vocação</td>
+                                <td class="py-3 px-4">{{ player["vocation"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-700">
+                                <td class="py-3 px-4"><i class="fas fa-dragon"></i> Raça</td>
+                                <td class="py-3 px-4">{{ player["race"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-800">
+                                <td class="py-3 px-4"><i class="fas fa-star"></i> Experiência</td>
+                                <td class="py-3 px-4">{{ player["exp"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-700">
+                                <td class="py-3 px-4"><i class="fas fa-level-up-alt"></i> Nível</td>
+                                <td class="py-3 px-4">{{ player["level"] }}</td>
+                            </tr>
 
-            </tbody>
-        </table>
-    </div>
+                            <!-- Atributos -->
+                            <tr class="bg-gray-700">
+                                <td colspan="2" class="text-xl font-semibold py-2 text-yellow-300">
+                                    <i class="fas fa-info-circle"></i> Atributos
+                                </td>
+                            </tr>
 
-    <!-- Mensagem de Começo -->
-    <div class="start-message text-center text-xl font-semibold py-6">
-        <i class="fas fa-dice-d20 text-yellow-500"></i> Vamos começar nossa aventura? Role um dado!
-    </div>
-    <div class="text-center">
-        <button class="roll-button bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg text-lg font-semibold">
-            <i class="fas fa-dice"></i> Rolar o Dado
-        </button>
-    </div>
+                            <tr class="bg-gray-800">
+                                <td class="py-3 px-4"><i class="fas fa-fist-raised"></i> Ataque</td>
+                                <td class="py-3 px-4">{{ player["attack"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-700">
+                                <td class="py-3 px-4"><i class="fas fa-shield-alt"></i> Defesa</td>
+                                <td class="py-3 px-4">{{ player["defense"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-800">
+                                <td class="py-3 px-4"><i class="fas fa-heart"></i> Saúde</td>
+                                <td class="py-3 px-4">{{ player["health"] }}</td>
+                            </tr>
+                            <tr class="bg-gray-700">
+                                <td class="py-3 px-4"><i class="fas fa-feather-alt"></i> Esquiva</td>
+                                <td class="py-3 px-4">{{ player["dodge"] }}</td>
+                            </tr>
 
-</body>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mensagem de Começo -->
+                <div class="start-message text-center text-xl font-semibold py-6">
+                    <i class="fas fa-dice-d20 text-yellow-500"></i> Vamos começar nossa aventura? Role um dado!
+                </div>
+                <div class="text-center">
+                    <button
+                        class="roll-button bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg text-lg font-semibold">
+                        <i class="fas fa-dice"></i> Rolar o Dado
+                    </button>
+                </div>
+
+            </body>
 
 </html>
