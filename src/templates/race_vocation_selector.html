@@ -132,10 +132,9 @@
             position: absolute;
         }
 
-        .vocation-icon {
-            bottom: 170px;
-            left: 135px;
-            text-align: center;
+        .vocation-image {
+            bottom: 165px;
+            left: 125px;
             position: absolute;
         }
     </style>
@@ -156,7 +155,7 @@
                 <!-- Selecione a Raça -->
                 <div>
                     <label for="race" class="block text-lg">Selecione sua Raça</label>
-                    <select name="race" id="race" class="w-full" required onchange="showSelectedImages()">
+                    <select name="race" id="race" class="w-full" required>
                         <option value="" disabled selected hidden>Raça</option>
                         {% for race in races.keys() %}
                             <option value="{{ race }}">{{ race.capitalize() }}</option>
@@ -167,7 +166,7 @@
                 <!-- Selecione a Vocação -->
                 <div>
                     <label for="vocation" class="block text-lg">Selecione sua Vocação</label>
-                    <select name="vocation" id="vocation" class="w-full" required onchange="showSelectedImages()">
+                    <select name="vocation" id="vocation" class="w-full" required>
                         <option value="" disabled selected hidden>Vocação</option>
                         {% for vocation in vocations.keys() %}
                             <option value="{{ vocation }}">{{ vocation.capitalize() }}</option>
@@ -185,7 +184,7 @@
             <div class="race-image" id="race-image">
                 <!-- Aqui a imagem da raça será exibida -->
             </div>
-            <div class="vocation-icon" id="vocation-icon">
+            <div class="vocation-image" id="vocation-image">
                 <!-- Aqui o ícone da vocação será exibido -->
             </div>
 
@@ -201,11 +200,11 @@
             "humano": "/static/img/sapiens.png"
         };
 
-        // Mapeamento dos ícones de vocações (Font Awesome)
-        const vocationIcons = {
-            "guerreiro": "fas fa-sword",
-            "arqueiro": "fas fa-bow-arrow",
-            "paladino": "fas fa-shield-alt"
+        // Mapeamento dos ícones de vocações
+        const vocationImages = {
+            "guerreiro": "/static/img/escudo.png",
+            "arqueiro": "/static/img/arco.png",
+            "mago": "/static/img/cajado.png",
         };
 
         // Função para atualizar a imagem da raça
@@ -218,13 +217,13 @@
             }
         });
 
-        // Função para atualizar o ícone da vocação
+        // Função para atualizar a imagem da vocação
         const vocationSelect = document.getElementById('vocation');
-        const vocationIcon = document.getElementById('vocation-icon');
+        const vocationImage = document.getElementById('vocation-image');
         vocationSelect.addEventListener('change', function() {
             const selectedVocation = vocationSelect.value.toLowerCase();
-            if (vocationIcons[selectedVocation]) {
-                vocationIcon.innerHTML = `<i class="${vocationIcons[selectedVocation]}" style="font-size: 50px;"></i>`;
+            if (vocationImages[selectedVocation]) {
+                vocationImage.innerHTML = `<img src="${vocationImages[selectedVocation]}" alt="${selectedVocation}" style="max-width: 70px; border-radius: 50%;"/>`;
             }
         });
     </script>

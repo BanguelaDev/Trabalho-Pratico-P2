@@ -8,72 +8,177 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Centered text */
-        .centered {
+        /* Fonte medieval */
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+        body {
+            font-family: 'MedievalSharp', cursive;
+            overflow-x: hidden;
+            background-color: black;
+        }
+
+        /* Estilo de fundo */
+        .background-wall {
+            background-image: url('/static/img/parede.jpg');
+            background-size: cover;
+            background-position: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(5px);
+            z-index: -1;
+
+            box-sizing: border-box;
+            box-shadow: inset 0 0 70px 50px black;
+        }
+
+        /* Pergaminho com animação */
+        .scroll {
+            background-image: url('/static/img/mapav2.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 800px;
+            height: 800px;
+            padding: 80px 200px;
+            opacity: 0;
+            transform-origin: center;
+            animation: openScroll 0.5s forwards ease-out;
+        }
+
+        @keyframes openScroll {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .flex.space-x-4 {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 50px;
+            position: relative;
+            top: 350px;
+        }
+
+        /* Estilo do título */
+        .form-header {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffdd57;
+            text-shadow: 1px 1px 2px #000;
+            text-align: center;
+            text-shadow: 2px 2px 4px #000;
+
+            margin-top: -300px;
+
             position: absolute;
+
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
-        p,h2,a {
-            text-shadow:
-                1px 1px 0 black,
-                -1px 1px 0 black,
-                1px -1px 0 black,
-                -1px -1px 0 black,
-                1px 0px 0 black,
-                -1px 0px 0 black,
-                0px 1px 0 black,
-                0px -1px 0 black;
-        }
-        .background-parede {
-            background-image: url('/static/img/parede.jpg');
-            background-size: cover;
-            background-position: center;
+
+        /* Estilo do texto */
+        .tutorial-text {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            text-align: center;
+            text-shadow: 2px 2px 4px #000;
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 70%;
+
+            opacity: 0;
+            animation: fadeIn .5s .25s forwards ease-out;
         }
 
+        /* Botões de navegação */
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.25rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+            margin-top: 60px;
+            /* Ajuste a margem para um espaçamento mais controlado */
+
+            opacity: 0;
+            animation: fadeIn .5s .25s forwards ease-out;
+        }
+
+        .nav-button-primary {
+            background-color: #DC143C;
+            color: white;
+        }
+
+        .nav-button-secondary {
+            background-color: #4b5563;
+            color: white;
+        }
+
+        .nav-button-primary:hover {
+            background-color: #b71c1c;
+        }
+
+        .nav-button-secondary:hover {
+            background-color: #6b7280;
+        }
     </style>
 </head>
 
+<body class="flex items-center justify-center min-h-screen text-white">
 
-<body class="background-parede text-white flex items-center justify-center min-h-screen">
-    <img src="/static/img/mapav2.png" class="centered" alt="" width="800" height="800" ;>
-    <div class="max-w-lg w-full p-6 centered">
+    <!-- Background -->
+    <div class="background-wall"></div>
 
-    <div class="flex flex-col items-center justify-center min-h-screen p-6">
+    <!-- Título do Tutorial -->
+    <h2 class="form-header">
+        <i class="fas fa-scroll"></i> Tutorial
+    </h2>
 
-        <!-- Título do Tutorial -->
-        <h2 class="text-4xl font-semibold text-yellow-400 mb-6">
-            <i class="fas fa-scroll"></i> Tutorial
-        </h2>
-
-        <!-- Conteúdo do Tutorial -->
-        <div class="max-w-3xl w-full">
-
+    <div class="scroll">
+        <div class="tutorial-text">
             {% if page == 0 %}
-            <p class="text-lg text-gray-300">Bem-vindo, aventureiro! Esta é sua jornada em Eldoria. Prepare-se para descobrir um mundo de magia e mistérios.</p>
+            <p>Bem-vindo, aventureiro! Em Eldoria, sua jornada começa com o sistema de rolagem de um dado de 20 lados (d20), onde os desafios são resolvidos com a sorte e a estratégia. Prepare-se para enfrentar monstros e abrir baús misteriosos!</p>
             {% elif page == 1 %}
-            <p class="text-lg text-gray-300">Aqui você aprenderá o básico de como funcionará a lógica do jogo e seus desafios.</p>
+            <p>A cada desafio, você usará os atributos de Ataque, Defesa, Vida e Esquiva para determinar seu sucesso. A rolagem do d20, somada aos seus atributos, decide o desfecho das batalhas e interações.</p>
             {% elif page == 2 %}
-            <p class="text-lg text-gray-300">Desenvolva suas habilidades ao longo do caminho. Cada novo nível traz mais poder e habilidades únicas.</p>
+            <p>Os desafios podem envolver confrontos com monstros de diferentes níveis de dificuldade, ou até mesmo a abertura de baús. Esteja preparado para qualquer situação e lembre-se: sua estratégia pode ser a chave para a vitória!</p>
             {% elif page == 3 %}
-            <p class="text-lg text-gray-300">Pronto para começar? Embarque nessa aventura épica e mostre seu valor!</p>
+            <p>Agora que você conhece os fundamentos, escolha sua vocação e raça, e embarque na jornada! Os desafios o aguardam, e sua habilidade será testada em cada rolagem de dado.</p>
             {% endif %}
-
         </div>
 
         <!-- Botões de Navegação -->
-        <div class="mt-8 space-x-4">
-            {% if page < 3 %}
-            <a href="{{ url_for('game.tutorial', page=page + 1) }}" style="background-color: #DC143C;" class="hover:bg-blue-600 text-white py-3 px-6 rounded-lg text-xl transition-colors">
-                Próximo
-            </a>
-            {% endif %}
-            <a href="{{ url_for('game.ticket') }}" class="bg-red-800 hover:bg-gray-600 text-white py-3 px-6 rounded-lg text-xl transition-colors">
-                Pular Tudo
-            </a>
-        </div>
+        <div class="flex space-x-4">
+            {% if page < 3 %} <a href="{{ url_for('game.tutorial', page=page + 1) }}"
+                class="nav-button nav-button-primary">Próximo</a>
+                {% endif %}
 
+                <a href="{{ url_for('game.ticket') }}" class="nav-button nav-button-secondary">Pular Tudo</a>
+        </div>
     </div>
 
 </body>

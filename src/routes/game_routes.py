@@ -12,7 +12,7 @@ races = {
 vocations = {
     "Guerreiro": {"attack": 2, "defense": 3},
     "Arqueiro": {"dodge": 2, "attack": 2},
-    "Paladino": {"health": 5, "defense": 2}
+    "Mago": {"health": 5, "defense": 2}
 }
 
 @game_bp.route("/race-vocation-selector", methods=['GET'])
