@@ -18,26 +18,17 @@ vocations = {
 @game_bp.route("/race-vocation-selector", methods=['GET'])
 def race_vocation_selector():
     player = get_player_by_user_id(session.get('user_id'))
-        
+            
     if player and (player['race'] != 'Unknown' or player['vocation'] != 'Unknown'):
-        return redirect(url_for('game.tutorial'))
+        return redirect(url_for('game.ticket'))
 
     return render_template("race_vocation_selector.html", races = races, vocations = vocations)
 
-@game_bp.route("/tutorial/<int:page>", methods=['GET', 'POST'])
+@game_bp.route("/tutorial/<int:page>", methods=['GET'])
 def tutorial(page):
     
     user_id = session.get('user_id')
     player = get_player_by_user_id(user_id)
-    
-    race = request.form.get('race')
-    vocation = request.form.get('vocation')
-    
-    if race and vocation:
-        update_player(user_id, {
-            'race': race,
-            'vocation': vocation
-        })
     
     if player:
         return render_template("tutorial.html", player=player, page=page)
@@ -47,10 +38,23 @@ def tutorial(page):
 @game_bp.route("/ticket", methods=['GET', 'POST'])
 def ticket():
     user_id = session.get('user_id')
-
+    
     if user_id:
         player = get_player_by_user_id(user_id)
         if player:
-            return render_template("ticket.html", player = player)
-    
-    return redirect(url_for('auth.login_register'))
+            if request.method == "POST":
+                race = request.form.get('race')
+                vocation = request.form.get('vocation')
+                                
+                if race and vocation and player['race'] == "Unknown" and player['vocation'] == "Unknown":
+                    
+                    print(race, vocation)
+                    
+                    player = update_player(user_id, {
+                        'race': race,
+                        'vocation': vocation
+                    })
+                                        
+                return render_template("ticket.html", player = player)
+
+    return redirect(url_for('auth.login'))

@@ -39,6 +39,8 @@ def update_player(user_id, update_fields): # Atualizando os dados do jogador que
 
     conn.commit()
     conn.close()
+    
+    return get_player_by_user_id(user_id)
 
 
 def get_player_by_user_id(user_id): # Pegando o jogador usando o respectivo id do usuário

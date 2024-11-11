@@ -9,6 +9,8 @@ def index():
 
 @auth_bp.route("/login", methods=['GET', 'POST'])
 def login():
+    session.pop('user_id', None)
+    
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -40,7 +42,7 @@ def register():
             user_id = add_user(new_username, new_password)
             add_player(user_id, new_username)
             session['user_id'] = user_id
-            return redirect(url_for('game.race_vocation_selector'))
+            return redirect(url_for('game.tutorial', page='0'))
 
     return render_template('login_register.html', register = True)
 
