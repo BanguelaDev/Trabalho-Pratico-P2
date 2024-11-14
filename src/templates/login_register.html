@@ -4,40 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Página Inicial - Eldoria</title>
+    <!-- Importação do ícone do Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
+        /* Estilos gerais */
         body {
             font-family: 'MedievalSharp', cursive;
             background-color: black;
+            margin: 0;
+            padding: 0;
         }
 
+        /* Imagem de fundo com blur */
         body::before {
             content: '';
             position: fixed;
-            
             top: 0;
             left: 0;
-
             width: 100%;
             height: 100%;
-
             background-image: url('/static/img/eldoria-fundo.jpg');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-
-            filter: blur(5px);
-
+            filter: blur(0.3vw);
             z-index: -1;
-
-            box-sizing: border-box;
-            box-shadow: inset 0 0 70px 50px black;
+            box-shadow: inset 0 0 2vw 1vw black;
         }
 
-        .title {
+        /* Título principal */
+        header {
             font-size: 2vw;
             font-weight: bold;
             color: #ffdd57;
@@ -46,12 +45,11 @@
             text-align: center;
         }
 
+        /* Container para o banner com texto sobreposto */
         .text-banner-container {
             position: relative;
-            margin-top: 10px;
-            margin-left: auto;
-            margin-right: auto;
             width: 35%;
+            margin: 10px auto;
         }
 
         .text-banner {
@@ -61,115 +59,65 @@
 
         .text-overlay {
             position: absolute;
-
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-
             color: #ffdd57;
             font-size: 5vw;
             text-align: center;
-
             font-weight: bold;
             text-shadow: 2px 2px 4px #000;
-            width: 100%;
         }
 
-        .scroll-container {
+        /* Container para o conteúdo do formulário com imagem de pergaminho */
+        .parchment-container {
             position: absolute;
-            top: 50%;
             left: 50%;
-            width: 45%;
-            height: 45%;
-            margin-top: 5vw;
+            width: 50%;
             transform: translate(-50%, -50%);
-        }
-
-        @keyframes openScroll {
-            0% {
-                opacity: 0;
-                transform: scaleX(0);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scaleX(1);
-            }
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        .scroll {
-            position: relative;
-            background-image: url('/static/img/mapav2.png');
+            background-image: url('/static/img/mapav2.png'); /* Imagem de pergaminho */
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
-
-            opacity: 0;
-            transform-origin: center;
-            animation: openScroll .5s forwards ease-out;
+            padding: 20px;
+            overflow: hidden;
         }
 
+        /* Título do formulário dentro do pergaminho */
         .form-header {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            color: #ffdd57;
+            color: #3e2a47;
             text-align: center;
             text-shadow: 1px 1px 2px #000;
-            opacity: 0;
-            animation: fadeIn .5s .25s forwards ease-out;
         }
 
-        label {
-            text-shadow:
-                1px 1px 0 black,
-                -1px 1px 0 black,
-                1px -1px 0 black,
-                -1px -1px 0 black,
-                1px 0px 0 black,
-                -1px 0px 0 black,
-                0px 1px 0 black,
-                0px -1px 0 black;
-        }
-
-        /* Estilos do formulário */
-        .scroll-form {
+        /* Estilo do formulário dentro do pergaminho */
+        .parchment-form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-            opacity: 0;
-            animation: fadeIn .5s .25s forwards ease-out;
-        }
-
-        /* Inputs e botão do formulário */
-        .scroll-form input {
-            background-color: #4a5568;
-            color: white;
+            gap: 20px;
             padding: 10px;
+        }
+
+        .parchment-form input {
+            background-color: #f4e1c1;
+            color: #3e2a47;
+            padding: 12px;
             border-radius: 8px;
-            border: 2px solid #2d3748;
-            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 2px solid #3e2a47;
             width: 100%;
+            font-size: 1.2rem;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
-        .scroll-form input:focus {
+        .parchment-form input:focus {
             border-color: #ffdd57;
-            box-shadow: 0 0 10px rgba(255, 221, 87, 0.5);
-            outline: none;
+            box-shadow: 0 0 5px #ffdd57;
         }
 
-        .scroll-form button {
+        /* Botão dentro do pergaminho */
+        .parchment-form button {
             background-color: #3b82f6;
             color: white;
             font-size: 1.2rem;
@@ -180,88 +128,81 @@
             transition: background-color 0.3s ease;
         }
 
-        .scroll-form button:hover {
+        .parchment-form button:hover {
             background-color: #2563eb;
         }
 
-        /* Botão de alternância para login/registro */
+        /* Link para alternar entre login e registro */
         .toggle-button {
-            background-color: transparent;
-            border: none;
             color: #ffdd57;
             font-size: 1.2rem;
             text-decoration: underline;
             text-shadow: 1px 1px 2px #000;
-            margin-bottom: 20px;
-            cursor: pointer;
-            opacity: 0;
-            animation: fadeIn .5s .25s forwards ease-out;
+            margin-top: 10px;
+            text-align: center;
         }
 
-        /* Adicionando ícones de Font Awesome nos botões */
-        .scroll-form button i {
+        /* Adicionando ícones aos botões */
+        .parchment-form button i,
+        .toggle-button i {
             margin-right: 8px;
         }
     </style>
 </head>
 
 <body>
-    <!-- Título -->
-    <header class="title">Bem-vindo à</header>
 
+    <!-- Título da página -->
+    <header>Bem-vindo à</header>
+
+    <!-- Banner com imagem e texto sobreposto -->
     <div class="text-banner-container">
         <img src="/static/img/text-banner.png" alt="Banner" class="text-banner">
         <div class="text-overlay">Eldoria</div>
     </div>
 
-    <div class="scroll-container">
-        <div class="scroll" id="login-form">
+    <!-- Container central para o conteúdo do formulário com efeito de pergaminho -->
+    <div class="parchment-container">
 
-        </div>
-    </div>
-
-<!--
-
-    <div>
-
+        <!-- Formulário de login -->
         {% if not register %}
-        <div class="scroll" id="login-form">
+        <div class="parchment-form" id="login-form">
             <h2 class="form-header">Login</h2>
-            <form action="{{ url_for('auth.login') }}" method="post" class="scroll-form">
+            <form action="{{ url_for('auth.login') }}" method="post">
                 <div>
-                    <label for="username" class="block text-lg">Usuário</label>
+                    <label for="username">Usuário</label>
                     <input type="text" id="username" name="username" required>
                     {% if error and label == "username" %}
-                    <p class="text-red-500 mt-1 text-sm">{{ error }}</p>
+                    <p>{{ error }}</p>
                     {% endif %}
                 </div>
                 <div>
-                    <label for="password" class="block text-lg">Senha</label>
+                    <label for="password">Senha</label>
                     <input type="password" id="password" name="password" required>
                     {% if error and label == "password" %}
-                    <p class="text-red-500 mt-1 text-sm">{{ error }}</p>
+                    <p>{{ error }}</p>
                     {% endif %}
                 </div>
                 <div class="text-center">
                     <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
                 </div>
             </form>
-            <div class="text-center mt-10">
-                <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem
-                    conta? Registre-se</a>
+            <div>
+                <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
             </div>
         </div>
 
+        <!-- Formulário de registro -->
         {% else %}
-        <div class="scroll" id="register-form">
+        <div class="parchment-form" id="register-form">
             <h2 class="form-header">Registro</h2>
-            <form action="{{ url_for('auth.register') }}" method="post" class="scroll-form">
+            <form action="{{ url_for('auth.register') }}" method="post">
                 <div>
-                    <label for="new-username" class="block text-lg">Usuário</label>
+                    <label for="new-username">Usuário</label>
                     <input type="text" id="new-username" name="new-username" required>
                 </div>
                 <div>
-                    <label for="new-password" class="block text-lg">Senha</label>
+                    <label for="new-password">Senha</label>
                     <input type="password" id="new-password" name="new-password" required>
                 </div>
                 <div class="text-center">
@@ -269,14 +210,12 @@
                 </div>
             </form>
             <div class="text-center mt-10">
-                <a href="{{ url_for('auth.login') }}" class="toggle-button"><i class="fas fa-sign-in-alt"></i> Já tem
-                    uma conta? Faça login</a>
+                <a href="{{ url_for('auth.login') }}" class="toggle-button"><i class="fas fa-sign-in-alt"></i> Já tem uma conta? Faça login</a>
             </div>
         </div>
         {% endif %}
-    </div>
 
--->
+    </div>
 
 </body>
 
