@@ -7,147 +7,7 @@
     <title>Página Inicial - Eldoria</title>
     <!-- Importação do ícone do Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
-
-        /* Estilos gerais */
-        body {
-            font-family: 'MedievalSharp', cursive;
-            background-color: black;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Imagem de fundo com blur */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('/static/img/eldoria-fundo.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            filter: blur(0.3vw);
-            z-index: -1;
-            box-shadow: inset 0 0 2vw 1vw black;
-        }
-
-        /* Título principal */
-        header {
-            font-size: 2vw;
-            font-weight: bold;
-            color: #ffdd57;
-            text-shadow: 2px 2px 4px #000;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        /* Container para o banner com texto sobreposto */
-        .text-banner-container {
-            position: relative;
-            width: 35%;
-            margin: 10px auto;
-        }
-
-        .text-banner {
-            width: 100%;
-            height: auto;
-        }
-
-        .text-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffdd57;
-            font-size: 5vw;
-            text-align: center;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px #000;
-        }
-
-        /* Container para o conteúdo do formulário com imagem de pergaminho */
-        .parchment-container {
-            position: absolute;
-            left: 50%;
-            width: 50%;
-            transform: translate(-50%, -50%);
-            background-image: url('/static/img/mapav2.png'); /* Imagem de pergaminho */
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        /* Título do formulário dentro do pergaminho */
-        .form-header {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #3e2a47;
-            text-align: center;
-            text-shadow: 1px 1px 2px #000;
-        }
-
-        /* Estilo do formulário dentro do pergaminho */
-        .parchment-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 10px;
-        }
-
-        .parchment-form input {
-            background-color: #f4e1c1;
-            color: #3e2a47;
-            padding: 12px;
-            border-radius: 8px;
-            border: 2px solid #3e2a47;
-            width: 100%;
-            font-size: 1.2rem;
-            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .parchment-form input:focus {
-            border-color: #ffdd57;
-            box-shadow: 0 0 5px #ffdd57;
-        }
-
-        /* Botão dentro do pergaminho */
-        .parchment-form button {
-            background-color: #3b82f6;
-            color: white;
-            font-size: 1.2rem;
-            padding: 12px 24px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .parchment-form button:hover {
-            background-color: #2563eb;
-        }
-
-        /* Link para alternar entre login e registro */
-        .toggle-button {
-            color: #ffdd57;
-            font-size: 1.2rem;
-            text-decoration: underline;
-            text-shadow: 1px 1px 2px #000;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        /* Adicionando ícones aos botões */
-        .parchment-form button i,
-        .toggle-button i {
-            margin-right: 8px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_register.css') }}">
 </head>
 
 <body>
@@ -162,11 +22,12 @@
     </div>
 
     <!-- Container central para o conteúdo do formulário com efeito de pergaminho -->
-    <div class="parchment-container">
+    <div class="map-container">
+        <img src="/static/img/mapav2.png" alt="Mapa" class="map-image">
 
         <!-- Formulário de login -->
         {% if not register %}
-        <div class="parchment-form" id="login-form">
+        <div class="map-form" id="login-form">
             <h2 class="form-header">Login</h2>
             <form action="{{ url_for('auth.login') }}" method="post">
                 <div>
@@ -183,18 +44,21 @@
                     <p>{{ error }}</p>
                     {% endif %}
                 </div>
-                <div class="text-center">
+
+                <div style="text-align: center">
                     <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
                 </div>
+
+                <div style="text-align: center">
+                    <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
+                </div>
+
             </form>
-            <div>
-                <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
-            </div>
         </div>
 
         <!-- Formulário de registro -->
         {% else %}
-        <div class="parchment-form" id="register-form">
+        <div class="map-form" id="register-form">
             <h2 class="form-header">Registro</h2>
             <form action="{{ url_for('auth.register') }}" method="post">
                 <div>
