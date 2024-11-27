@@ -16,18 +16,18 @@
     <header>Bem-vindo à</header>
 
     <!-- Banner com imagem e texto sobreposto -->
-    <section class="text-banner-container">
+    <div class="text-banner-container">
         <img src="/static/img/text-banner.png" alt="Banner" class="text-banner">
         <div class="text-overlay">Eldoria</div>
-    </section>
+    </div>
 
     <!-- Container central para o conteúdo do formulário com efeito de pergaminho -->
-    <main class="map-container">
+    <div class="map-container">
         <img src="/static/img/mapav2.png" alt="Mapa" class="map-image">
 
         <!-- Formulário de login -->
         {% if not register %}
-        <section class="map-form" id="login-form">
+        <div class="map-form" id="login-form">
             <h2 class="form-header">Login</h2>
             <form action="{{ url_for('auth.login') }}" method="post">
                 <div>
@@ -54,7 +54,7 @@
                 </div>
 
             </form>
-        </section>
+        </div>
 
         <!-- Formulário de registro -->
         {% else %}
@@ -79,7 +79,7 @@
         </div>
         {% endif %}
 
-    </main>
+    </div>
 
 </body>
 
