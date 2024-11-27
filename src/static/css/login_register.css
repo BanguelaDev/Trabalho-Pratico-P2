@@ -73,13 +73,14 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .map-image {
     width: 100%;
-    height: 100%;
-    object-fit: fill;
-    position: absolute; /* Para que a imagem fique atrás do formulário */
+    height: auto;
+    object-fit: contain;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
@@ -96,6 +97,7 @@ header {
 
 /* Estilo dos formulários */
 .map-form {
+    position: relative; /* Adiciona posição relativa ao contêiner do formulário */
     margin: auto;
     width: 70%;
     height: 100%;
@@ -145,71 +147,84 @@ header {
     margin-right: 8px;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .text-banner-container {
-        width: 70%;
-    }
-
+@media (min-width: 1200px) {
     .map-container {
-        width: 90%;
+        width: 30vw; /* Ajuste a largura para telas grandes */
+        height: 50vh; /* Aumenta a altura do contêiner */
     }
 
     .form-header {
-        font-size: 2rem;
-    }
-
-    header {
-        font-size: 4vw;
+        font-size: 2vw; /* Aumenta o tamanho da fonte do cabeçalho */
     }
 
     .text-overlay {
-        font-size: 8vw;
-    }
-
-    .map-form input {
-        font-size: 3vw;
-    }
-
-    .map-form button {
-        font-size: 3vw;
-    }
-
-    .toggle-button {
-        font-size: 3vw;
+        font-size: 6vw; /* Aumenta o tamanho do texto sobreposto */
     }
 }
 
-@media (max-width: 480px) {
-    header {
-        font-size: 5vw;
-    }
-
-    .text-banner-container {
-        width: 90%;
-    }
-
+/* Para telas médias (tablets) */
+@media (max-width: 1199px) and (min-width: 768px) {
     .map-container {
-        width: 95%;
+        width: 50vw; /* Ajuste a largura para tablets */
+        height: 40vh; /* Mantém a altura do contêiner */
     }
 
     .form-header {
-        font-size: 1.5rem;
+        font-size: 1.8vw; /* Ajuste o tamanho da fonte do cabeçalho */
     }
 
     .text-overlay {
-        font-size: 10vw;
+        font-size: 5vw; /* Ajuste o tamanho do texto sobreposto */
+    }
+}
+
+/* Para telas pequenas (celulares) */
+@media (max-width: 767px) {
+    .map-container {
+        width: 90%; /* Ajuste a largura para celulares */
+        height: auto; /* Permite que a altura se ajuste automaticamente */
+    }
+
+    .form-header {
+        font-size: 4vw; /* Aumenta o tamanho da fonte do cabeçalho */
+    }
+
+    .text-overlay {
+        font-size: 8vw; /* Aumenta o tamanho do texto sobreposto */
+    }
+
+    .map-form {
+        width: 90%; /* Ajusta a largura do formulário */
     }
 
     .map-form input {
-        font-size: 4vw;
+        font-size: 4vw; /* Aumenta o tamanho da fonte dos inputs */
     }
 
     .map-form button {
-        font-size: 4vw;
+        font-size: 4vw; /* Aumenta o tamanho da fonte do botão */
     }
 
     .toggle-button {
-        font-size: 4vw;
+        font-size: 4vw; /* Aumenta o tamanho da fonte do link */
+    }
+}
+
+/* Para telas extra pequenas (celulares muito pequenos) */
+@media (max-width: 480px) {
+    header {
+        font-size: 5vw; /* Aumenta o taman  	                                                                                                                                                                                                                                                           ``````````````````````````````````````````                     ``````````````````````````````````                                                                                                                iho da fonte do cabeçalho */
+    }
+
+    .text-banner-container {
+        width: 90%; /* Ajusta a largura do banner */
+    }
+
+    .map-container {
+        width: 95%; /* Ajusta a largura do contêiner do mapa */
+    }
+
+    .text-overlay {
+        font-size: 10vw; /* Aumenta o tamanho do texto sobreposto */
     }
 }
