@@ -16,70 +16,73 @@
     <header>Bem-vindo à</header>
 
     <!-- Banner com imagem e texto sobreposto -->
-    <div class="text-banner-container">
-        <img src="/static/img/text-banner.png" alt="Banner" class="text-banner">
-        <div class="text-overlay">Eldoria</div>
-    </div>
+    <section class="banner-container">
+        <img src="/static/img/text-banner.png" alt="Banner" class="banner-eldoria">
+        <div class="text-eldoria">Eldoria</div>
+    </section>
 
-    <!-- Container central para o conteúdo do formulário com efeito de pergaminho -->
-    <div class="map-container">
+    <!-- Container central -->
+    <main class="map-container">
+
         <img src="/static/img/mapav2.png" alt="Mapa" class="map-image">
 
-        <!-- Formulário de login -->
-        {% if not register %}
-        <div class="map-form" id="login-form">
-            <h2 class="form-header">Login</h2>
-            <form action="{{ url_for('auth.login') }}" method="post">
-                <div>
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" name="username" required>
-                    {% if error and label == "username" %}
-                    <p>{{ error }}</p>
-                    {% endif %}
-                </div>
-                <div>
-                    <label for="password">Senha</label>
-                    <input type="text" id="password" name="password" required>
-                    {% if error and label == "password" %}
-                    <p>{{ error }}</p>
-                    {% endif %}
-                </div>
+         <!-- Formulário de login -->
+         {% if not register %}
+         <section class="map-content" id="login-form">
+ 
+             <header class="text-login">Login</header>
+ 
+             <form action="{{ url_for('auth.login') }}" method="post">
+                 <div>
+                     <label for="username">Usuário</label>
+                     <input type="text" id="username" name="username" required>
+                     {% if error and label == "username" %}
+                     <p>{{ error }}</p>
+                     {% endif %}
+                 </div>
+                 <div>
+                     <label for="password">Senha</label>
+                     <input type="text" id="password" name="password" required>
+                     {% if error and label == "password" %}
+                     <p>{{ error }}</p>
+                     {% endif %}
+                 </div>
+ 
+                 <div style="text-align: center">
+                     <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
+                 </div>
+ 
+                 <div style="text-align: center">
+                     <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
+                 </div>
+ 
+             </form>
+         </section>
+ 
+         <!-- Formulário de registro -->
+         {% else %}
+         <div class="map-form" id="register-form">
+             <h2 class="form-header">Registro</h2>
+             <form action="{{ url_for('auth.register') }}" method="post">
+                 <div>
+                     <label for="new-username">Usuário</label>
+                     <input type="text" id="new-username" name="new-username" required>
+                 </div>
+                 <div>
+                     <label for="new-password">Senha</label>
+                     <input type="password" id="new-password" name="new-password" required>
+                 </div>
+                 <div class="text-center">
+                     <button type="submit"><i class="fas fa-user-plus"></i> Registrar</button>
+                 </div>
+             </form>
+             <div class="text-center mt-10">
+                 <a href="{{ url_for('auth.login') }}" class="toggle-button"><i class="fas fa-sign-in-alt"></i> Já tem uma conta? Faça login</a>
+             </div>
+         </div>
+         {% endif %}
 
-                <div style="text-align: center">
-                    <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
-                </div>
-
-                <div style="text-align: center">
-                    <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
-                </div>
-
-            </form>
-        </div>
-
-        <!-- Formulário de registro -->
-        {% else %}
-        <div class="map-form" id="register-form">
-            <h2 class="form-header">Registro</h2>
-            <form action="{{ url_for('auth.register') }}" method="post">
-                <div>
-                    <label for="new-username">Usuário</label>
-                    <input type="text" id="new-username" name="new-username" required>
-                </div>
-                <div>
-                    <label for="new-password">Senha</label>
-                    <input type="password" id="new-password" name="new-password" required>
-                </div>
-                <div class="text-center">
-                    <button type="submit"><i class="fas fa-user-plus"></i> Registrar</button>
-                </div>
-            </form>
-            <div class="text-center mt-10">
-                <a href="{{ url_for('auth.login') }}" class="toggle-button"><i class="fas fa-sign-in-alt"></i> Já tem uma conta? Faça login</a>
-            </div>
-        </div>
-        {% endif %}
-
-    </div>
+    </main>
 
 </body>
 

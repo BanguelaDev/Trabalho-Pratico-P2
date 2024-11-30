@@ -7,6 +7,8 @@ DATABASE = 'rpg_game.db'
 def init_db():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
+    
+     # Tabela de usuários
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,6 +16,8 @@ def init_db():
             password TEXT NOT NULL
         )
     ''')
+    
+     # Tabela de jogadores (o user_id é usado caso algum dia queiramos fazer com que um usuário tenha mais de 1 jogador (personagem) )
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS players (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
