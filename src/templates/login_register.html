@@ -35,6 +35,7 @@
              <form action="{{ url_for('auth.login') }}" method="post">
                  <div>
                      <label for="username">Usuário</label>
+                     <br>
                      <input type="text" id="username" name="username" required>
                      {% if error and label == "username" %}
                      <p>{{ error }}</p>
@@ -42,17 +43,18 @@
                  </div>
                  <div>
                      <label for="password">Senha</label>
+                     <br>
                      <input type="text" id="password" name="password" required>
                      {% if error and label == "password" %}
                      <p>{{ error }}</p>
                      {% endif %}
                  </div>
  
-                 <div style="text-align: center">
+                 <div>
                      <button type="submit"><i class="fas fa-sign-in-alt"></i> Entrar</button>
                  </div>
  
-                 <div style="text-align: center">
+                 <div>
                      <a href="{{ url_for('auth.register') }}" class="toggle-button"><i class="fas fa-user-plus"></i> Não tem conta? Registre-se</a>
                  </div>
  
